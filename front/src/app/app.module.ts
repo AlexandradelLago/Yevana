@@ -1,7 +1,6 @@
-// materializecss
-import "materialize-css";
-import { MaterializeDirective } from 'angular2-materialize';
-import * as M from "materialize-css/dist/js/materialize";
+//materialize
+import 'materialize-css';
+
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,19 +11,20 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { BookingComponent } from './booking/booking.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
-    BookingComponent
+    BookingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    MaterializeDirective
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

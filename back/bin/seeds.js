@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/yevana', {useMongoClient: true});
-const Vehiculo = require('../models/Vehiculo');
+const Van = require('../models/Van');
 
 // Iteration #1
 const vehiculoData =   [{

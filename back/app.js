@@ -4,8 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var mongoose = require('mongoose');
+var connection = mongoose.connect('mongodb://localhost/yevana')
+    .then(console.log("Connected to DB!!"));
+
+//module.exports = connection;
+
+
+// routes 
+//var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const bookingsRouter = require ('./routes/bookings');
+const vansRouter = require ('./routes/vans');
+const seasonsRouter = require('./routes/seasons');
+
 
 var app = express();
 
@@ -19,8 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/', indexRouter);
+app.use('/user', usersRouter);
+app.use('/van', vansRouter);
+app.use('/booking', bookingsRouter);
+app.use('/season', seasonsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,4 +53,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.all('/*', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 module.exports = app;
+
+
+

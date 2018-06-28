@@ -1,7 +1,7 @@
 {
   "name": "yevana",
-  "description":"Rental Vans Web app",
-  "main":"app.js",
+  "description": "Rental Vans Web app",
+  "main": "app.js",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,9 +15,12 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
+    "express-ejs-layouts": "^2.4.0",
     "http-errors": "~1.6.2",
+    "moment": "^2.22.2",
     "mongoose": "^5.1.6",
     "morgan": "~1.9.0",
+    "ng2-toastr": "^4.1.2",
     "nodemon": "^1.17.5"
   }
 }
