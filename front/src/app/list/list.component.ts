@@ -10,7 +10,7 @@ import {VansService} from '../services/vans.service'
 })
 export class ListComponent implements OnInit {
 
-  list: any;
+  vans: any;
 
 
   constructor(private router:Router,
@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   
   ngOnInit() {
     this.vansService.getList()
-    .subscribe(list=> this.list = list);
+    .subscribe(vans=> this.vans = vans);
   }
 
   onSubmit(event){

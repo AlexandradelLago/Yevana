@@ -8,19 +8,28 @@ import 'rxjs/add/operator/catch';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class VansService {
-  baseURLVans = environment.baseURL + 'alquiler/vans';
+  baseURL = environment.baseURL;
   constructor(private http:Http) { }
 
-
-  getList(){
-    return this.http.get(this.baseURLVans)
-    .map(res => res.json());
+  getList() {
+    return this.http.get(`${this.baseURL}/van`)
+      .map((res) => res.json());
   }
-
-  newBooking(): Object{
-    return {};
+  
+  newVan(form) {
+    return this.http.post(`${this.baseURL}/van`,form)
+      .map((res) => res.json());
   }
-
+  
+  edit(van) {
+    return this.http.patch(`${this.baseURL}/van/${van.id}`, van)
+      .map((res) => res.json());
+  }
+  
+  remove(id) {
+    return this.http.delete(`${this.baseURL}/van/${id}`)
+      .map((res) => res.json());
+  }
 
 
 }
