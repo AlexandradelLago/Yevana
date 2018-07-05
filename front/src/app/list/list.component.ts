@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import vanList from '../vans';
+import {Router} from '@angular/router';
+import {VansService} from '../services/vans.service'
+
 
 @Component({
   selector: 'app-list',
@@ -8,28 +10,30 @@ import vanList from '../vans';
 })
 export class ListComponent implements OnInit {
 
-  vans: Object[];
-  newVan: Object = {};
+  list: any;
 
-  constructor() { }
+
+  constructor(private router:Router,
+  private vansService:VansService) { }
   
   ngOnInit() {
-    this.vans = vanList;
+    this.vansService.getList()
+    .subscribe(list=> this.list = list);
   }
 
   onSubmit(event){
     event.preventDefault();
   }
 
-  addContact(){
-    console.log("Add contact has been called");
+  // addContact(){
+  //   console.log("Add contact has been called");
 
-     this.vans.push(this.newVan);
-     console.log(this.vans);
-     this.newVan = {};
+  //    this.vans.push(this.newVan);
+  //    console.log(this.vans);
+  //    this.newVan = {};
     // add contact to contacts list
     // clear inputs
-  }
+  
 
 }
 

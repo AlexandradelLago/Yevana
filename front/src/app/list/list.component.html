@@ -1,27 +1,36 @@
+<app-nav-bar></app-nav-bar>
+
 <h1>
     My Vans
   </h1>
 
   <section class="contactlist">
-  <div class="col s12 m12" class="contact" *ngFor= "let van of vans">
+  <div class="col s2 m2" class="contact" *ngFor= "let van of vans">
       <h2 class="header">Horizontal Card</h2>
       <div class="card">
         <div class="card-image">
+        
             <img src="{{van.image}}" alt="imagen de van">
         </div>
         <div class="card-stacked">
           <div class="card-content">
+              <p>{{van._id}}</p>
               <p>{{van.name}}</p>
               <p>{{van.description}}</p>
               <p> Engine {{van.features.motor}}    Fuel {{van.features.fuel}} </p>
               <p> PAX {{van.features.pax}}     Beds {{van.features.beds}} </p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
-            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Book</i></a>
+        
+            <a  [routerLink]="['/alquiler/vans', van._id]" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Book</i></a>
           </div>
+    
         </div>
       </div>
     </div>
+    <div>
 
+    
+    
+    </div>
   </section>

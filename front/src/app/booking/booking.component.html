@@ -1,25 +1,26 @@
+<app-nav-bar></app-nav-bar>
+
+<h3>
+  This is the page for the contact: {{contactId }}
+</h3>
+
+<input (keyup)="recordAllTheKeyStrokes($event)">
+
 <section class="form">
     <div>
-      <label for="booking-name">Name</label>
-      <input type="text" [(ngModel)]="newContact.name">
-    </div>
-    <div>
       <label for="booking-startDate">Start</label>
-      <input type="Date" [(ngModel)]="newContact.date1">
+      <input type="Date" [(ngModel)]="newBooking.startDate">
     </div>
+      <p>{{newBooking.startDate}}</p>
     <div>
-        <label for="booking-endDate">Start</label>
-        <input type="Date" [(ngModel)]="newContact.date2">
-      </div>
-    <div>
-      <label for="contact-phone">Phone</label>
-      <input type="text" [(ngModel)]="newContact.phoneNumber">
+      <label for="booking-endDate">End</label>
+      <input type="Date" [(ngModel)]="newBooking.endDate">
+      <p>{{newBooking.endDate}}</p>
     </div>
-    <div>
-      <label for="contact-image">Picture</label>
-      <input type="text" [(ngModel)]="newContact.image">
-    </div>
+   
     
-    <button (click)="addContact()">Submit New Contact</button>
+    <button (click)="addBooking()">Submit New Booking</button>
   
   </section>
+
+
