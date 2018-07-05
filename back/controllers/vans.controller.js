@@ -4,9 +4,26 @@ const Van = require("../models/Van");
 // este para USER y para ADMIN - si admin sale boton editar
 exports.getVans = function(req, res, next) {
     Van.find()
+   // .then(items=>res.render('alquiler/vans',{items:items}))
+   // .catch(e=>res.status(500).send(e));
+    // estoy es cuando angular
     .then(items=>res.status(200).json(items))
     .catch(e=>res.status(500).send(e));
   }
+
+
+//   function checkRoles(role) {
+//     return function(req, res, next) {
+//       if (req.isAuthenticated() && req.user.role === role) {
+//         return next();
+//       } else {
+//         res.redirect('/login')
+//       }
+//     }
+//   }
+
+
+
   // solo para rol ADMIN
 exports.postVan = (req, res, next)=>{
     Van.find()

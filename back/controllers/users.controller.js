@@ -31,8 +31,10 @@ exports.getUsers = function(req, res, next) {
 exports.postUser = (req, res, next)=>{
     const newUser = new User({
       name: req.body.name,
+      username:req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      role:req.body.role
     });
 
     newUser.save()

@@ -3,16 +3,11 @@ Schema = mongoose.Schema,
 objectId = mongoose.Schema.ObjectId;
 
 var userSchema = new Schema({
-    password: { type: String, default: "ADMIN" },
-    email:{type:String, default: "ADMIN"},
-
-   username: { type: String, default: "ADMIN" },
+    password: { type: String, required: [true, 'Please enter your password'],
+    minlength: [6, 'Name must be greater than 6 characters']},
+    email:{type:String,match: /.+@.+/, required:[true, 'Please enter your email']},
+    username: { type: String, default: "ADMIN" },
     name:{type:String, default: "ADMIN"},
-//     password: { type: String, required: true },
-//     email:{type:String, required:false},
-
-//    username: { type: String, required: true },
-//     name:{type:String, required:true},
     role:{
         type:String,
         enum:["USER", "COLABORATOR", "ADMIN"],
