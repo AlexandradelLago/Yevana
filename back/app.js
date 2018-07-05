@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var mongoose = require('mongoose');
 var connection = mongoose.connect('mongodb://localhost/yevana')
@@ -20,6 +21,9 @@ const seasonsRouter = require('./routes/seasons');
 
 
 var app = express();
+
+// cors para la integracion con el front que va a ir en otro puerto, no 3000 si no 4200
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
