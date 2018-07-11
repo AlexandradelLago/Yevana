@@ -12,6 +12,12 @@ exports.getVans = function(req, res, next) {
   }
 
 
+  exports.getVan = function (req,res,next){
+      Van.findById(req.params.id)
+      .then(item => res.status(200).json(item))
+      .catch (e=> res.status(500).send(e));
+  }
+
 //   function checkRoles(role) {
 //     return function(req, res, next) {
 //       if (req.isAuthenticated() && req.user.role === role) {

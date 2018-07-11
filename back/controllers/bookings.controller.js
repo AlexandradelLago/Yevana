@@ -13,20 +13,28 @@ exports.getBookings = function(req, res, next) {
     .catch(e=>res.status(500).send(e));
   }
 
+exports.getBooking = function (req,res,next){
+    Booking.findById(req.params.id)
+    .then(item => res.status(200).json(item))
+    .catch (e=> res.status(500).send(e));
+}
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // USER con el ID y ADMIN
 exports.postBooking = (req, res, next)=>{
     // days-- change to dates!!
     console.log(req.body)
-    console.log("ESTOY AQUI")
+    console.log(req.body.values)
+   
      // The number of milliseconds in one day
      var ONE_DAY = 1000 * 60 * 60 * 24
 
      // Convert both dates to milliseconds
      //var date1_ms = req.body.endDate.getTime()
      // este lo uso cuando harcodee el valor de date en postman
-     var date1_ms = Date.parse(req.body.endDate);
+     var date1_ms = Date.parse(req.body.values.endDate);
+     console.log(date1_ms)
     // var date2_ms = req.body.startDate.getTime()
-     var date2_ms = Date.parse(req.body.startDate);
+     var date2_ms = Date.parse(req.body.values.startDate);
      // Calculate the difference in milliseconds and convert back to days 
      var totalDays = Math.round(Math.abs(date1_ms - date2_ms)/ONE_DAY)
      // tengo que pasarlo todo a date y guardarlo  y luego comparar fechas enteras
@@ -36,7 +44,8 @@ exports.postBooking = (req, res, next)=>{
     // }
     //.datepicker("getDate").toLocalTime().toJSON();
 
-     var start = new Date(req.body.startDate);
+     var start = new Date(req.body.values.startDate);
+     console.log(start)
      var startDay = start.getDay();
      var startMonth = start.getMonth();
      var startYear = start.getYear ();
@@ -44,12 +53,13 @@ exports.postBooking = (req, res, next)=>{
      //console.log(start.getDay())
      console.log(startYear)
 
-     var end = new Date(req.body.endDate)
+     var end = new Date(req.body.values.endDate)
      var endDay = end.getDay();
      var endMonth = end.getMonth();
      var endYear = end.getYear ();
      var seasonDays=[]
-    // var seasonMonths = [];
+     var seasonMonths = [];
+     var seasonYear = [];
     console.log("antes de season")
     Season.find().then(seasons =>{
         seasons[0].dateSeason.forEach(d=>{
@@ -57,27 +67,29 @@ exports.postBooking = (req, res, next)=>{
             seasonDays.push(tDate.getDay());
             seasonMonths.push(tDate.getMonth());
             seasonYear.push(tDate.getYear());
-            console.log(seasonDays)
+           // console.log(seasonDays)
         })
     });
    console.log("antes de nuevo array de seasonDays")
-     console.log (seasonDays);
+    // console.log (seasonDays[0]);
      //console.log (Season.find({ "new Date(date).getDay()" : start.getDay()}));
 
     Van.findById(req.body._van)
-    .then(car => {
-        User.findById(req.body.user)
-        .then (user => {
+        .then(car => {
+        // User.findById(req.body.user)
+        // .then (user => {
+        //     console.log(req.body.user)
         console.log("entre en VAN")
-        console.log(req.body._user)
+        console.log(req.body.values)
+        // console.log(req.body._user)
         const newBooking = new Booking({
-            startDate: req.body.startDate,
-            endDate: req.body.endDate,
+            startDate: req.body.values.startDate,
+            endDate: req.body.values.endDate,
             total: totalDays,
             price : totalDays ,
             _van : req.body._van,
             // cuando tenga login pondre req.user en lugar de req.body._user
-            _user : req.body._user
+           // _user : req.body._user
         });
 // cambiar por req.user
         // total            : { type: Number, required:true},
@@ -91,7 +103,9 @@ exports.postBooking = (req, res, next)=>{
             .then(userUpdated => res.status(201).json(userUpdated))*/
         })
         .catch(e=>res.status(500).send(e));
-    })})
+   // })
+
+})
 }
 
 // user con el ID y ADMIN

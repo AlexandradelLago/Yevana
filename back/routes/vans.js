@@ -4,6 +4,7 @@ const controller = require("../controllers/vans.controller");
 
 router.get('/', controller.getVans);
 router.post('/', controller.postVan);
+router.get ('/:id',controller.getVan);
 router.patch('/:id', controller.patchVan);
 router.delete('/:id', controller.deleteVan);
 
