@@ -26,6 +26,7 @@ import { AdminNavComponent } from './admin-nav/admin-nav.component';
 // services
 import {VansService} from './services/vans.service';
 import {AuthService} from './services/auth.service';
+import { BookingService } from './services/booking.service';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import {AuthService} from './services/auth.service';
     CalendarModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [VansService,AuthService],
+  providers: [VansService,AuthService,BookingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

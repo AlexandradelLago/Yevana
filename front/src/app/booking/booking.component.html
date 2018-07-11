@@ -1,26 +1,53 @@
 <app-nav-bar></app-nav-bar>
 
 <h3>
-  This is the page for the contact: {{contactId }}
+  This is the page for the van: {{contactId }}
 </h3>
 
-<input (keyup)="recordAllTheKeyStrokes($event)">
+{{diagnostic}}
 
-<section class="form">
+<button (click)="showDetails()">Details</button>
+
+<div *ngIf="van" class="card">
+  <img src="assets/images/{{van.image}}" alt="image of van">
+  <p>{{van.description.long}}</p>
+  <p>{{van.name}}</p>
+</div>
+
+<form class="form" (ngSubmit)="addBooking(myForm,contactId)" #myForm="ngForm">
+
     <div>
-      <label for="booking-startDate">Start</label>
-      <input type="Date" [(ngModel)]="newBooking.startDate">
+      <label for="booking-startDate">Pick the start date</label>
+      <input id="startDate" type="Date" [(ngModel)]="newDate.startDate" name="startDate"required >
     </div>
-      <p>{{newBooking.startDate}}</p>
+      <p>{{newDate.startDate}}</p>
     <div>
-      <label for="booking-endDate">End</label>
-      <input type="Date" [(ngModel)]="newBooking.endDate">
-      <p>{{newBooking.endDate}}</p>
+      <label for="booking-endDate">Pick the end date</label>
+      <input id="endDate" name="endDate" type="Date" [(ngModel)]="newDate.endDate" required >
+      <p>{{newDate.endDate}}</p>
     </div>
-   
-    
-    <button (click)="addBooking()">Submit New Booking</button>
+    <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
   
-  </section>
+  </form>
 
-
+  <!-- <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" novalidate>
+      <p> Username
+        <input type="text" name="username" [(ngModel)]="username"
+              #myUsername="ngModel" minlength="6" />
+      </p>
+      <div *ngIf="myUsername.errors && (myUsername.dirty || myUsername.touched)">
+        <p class="error" [hidden]="!myUsername.errors.minlength">
+          Username must be at least 6 characters long.
+        </p>
+      </div>
+      <p> Password
+        <input type="password" name="password" [(ngModel)]="password"
+              #myPassword="ngModel" required />
+      </p>
+      <div *ngIf="myPassword.errors && (myPassword.dirty || myPassword.touched)">
+        <p class="error" [hidden]="!myPassword.errors.required">
+          Password is required
+        </p>
+      </div>
+      <button type="submit"> signup </button>
+    </form> -->

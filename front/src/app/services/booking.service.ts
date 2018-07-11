@@ -5,34 +5,36 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+// me falta handle error
+
 import { environment } from '../../environments/environment';
 @Injectable()
-export class VansService {
+export class BookingService {
   baseURL = environment.baseURL;
   constructor(private http:Http) { }
 
-  getList() {
-    return this.http.get(`${this.baseURL}/van`)
+  getListBookings():Observable<any> {
+    return this.http.get(`${this.baseURL}/booking`)
       .map((res) => res.json());
   }
   
-  newVan(form) {
-    return this.http.post(`${this.baseURL}/van`,form)
+  newBooking(values,_van):Observable<any> {
+    return this.http.post(`${this.baseURL}/booking`,{values,_van})
       .map((res) => res.json());
   }
   
-  getVan(id) {
-    return this.http.get(`${this.baseURL}/van/${id}`)
+  getBooking(id):Observable<any> {
+    return this.http.get(`${this.baseURL}/booking/${id}`)
       .map((res) => res.json());
   }
 
-  edit(van) {
-    return this.http.patch(`${this.baseURL}/van/${van.id}`, van)
+  editBooking(booking):Observable<any> {
+    return this.http.patch(`${this.baseURL}/booking/${booking.id}`, booking)
       .map((res) => res.json());
   }
   
-  remove(id) {
-    return this.http.delete(`${this.baseURL}/van/${id}`)
+  removeBooking(id) {
+    return this.http.delete(`${this.baseURL}/booking/${id}`)
       .map((res) => res.json());
   }
 

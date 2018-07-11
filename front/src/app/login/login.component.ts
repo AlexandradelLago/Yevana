@@ -34,9 +34,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(document).ready(function() {
-      ($('.parallax') as any).parallax();
-    });
+    // $(document).ready(function() {
+    //   ($('.parallax') as any).parallax();
+    // });
 
     if (!localStorage.getItem('user')) { return; }
      this.user = JSON.parse(localStorage.getItem('user'));
