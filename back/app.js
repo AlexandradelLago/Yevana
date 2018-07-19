@@ -11,9 +11,19 @@ var connection = mongoose.connect('mongodb://localhost/yevana')
 
 //module.exports = connection;
 
+// añado metodo a Date
+Date.prototype.addDays = function (days) {
+  var dat = new Date(this.valueOf())
+  dat.setDate(dat.getDate() + days);
+  return dat;
+}
+
+Date.prototype.toLocalTime = function () {
+      return new Date(this.getTime() - (this.getTimezoneOffset() * 60000));
+}
+
 
 // routes 
-//var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const bookingsRouter = require ('./routes/bookings');
 const vansRouter = require ('./routes/vans');
