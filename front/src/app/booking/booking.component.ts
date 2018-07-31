@@ -12,12 +12,15 @@ export class BookingComponent implements OnInit {
   
   van; savedVan;
   contactId: String;
+  today:Date;
   newDate :Object={ startDate: '', endDate:''}
   constructor(private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }
 
   ngOnInit() {
     
+ 
+
     this.route.params
       .subscribe((params) => this.contactId = params['id']);
     this.route.params

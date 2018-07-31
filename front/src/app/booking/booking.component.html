@@ -1,53 +1,41 @@
 <app-nav-bar></app-nav-bar>
 
-<h3>
-  This is the page for the van: {{contactId }}
-</h3>
+<div class="row container col s4 m2">
+  
+    This is the page for the van: {{contactId }}
+  
+  
+  {{diagnostic}}
+  
+  <button (click)="showDetails()">Details</button>
+  
+  <div   *ngIf="van" class="card col s6">
+    <img class="circle responsive-img" src="assets/images/{{van.image}}" alt="image of van" >
+    <p>{{van.description.long}}</p>
+    <p>{{van.name}}</p>
+  </div>
+  <div class="s4">
+    <form class="form" (ngSubmit)="addBooking(myForm,contactId)" #myForm="ngForm">
+  
+      <div class="s2" >
+        <label for="booking-startDate">Pick the start date</label>
+        <input id="startDate" type="Date" [(ngModel)]="newDate.startDate" name="startDate" min="2018-08-10" max="2018-09-30" required >
+      </div>
+        <p>{{newDate.startDate}}</p>
+      <div class=" s2">
+        <label for="booking-endDate">Pick the end date</label>
+        <input id="endDate" name="endDate" type="Date" [(ngModel)]="newDate.endDate" min="2018-08-10" max="2018-09-30" required >
+        <p>{{newDate.endDate}}</p>
+      </div>
+      <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
+    
+    </form>
 
-{{diagnostic}}
+  </div>
+  
+ 
+ 
 
-<button (click)="showDetails()">Details</button>
-
-<div *ngIf="van" class="card">
-  <img src="assets/images/{{van.image}}" alt="image of van">
-  <p>{{van.description.long}}</p>
-  <p>{{van.name}}</p>
 </div>
 
-<form class="form" (ngSubmit)="addBooking(myForm,contactId)" #myForm="ngForm">
 
-    <div>
-      <label for="booking-startDate">Pick the start date</label>
-      <input id="startDate" type="Date" [(ngModel)]="newDate.startDate" name="startDate"required >
-    </div>
-      <p>{{newDate.startDate}}</p>
-    <div>
-      <label for="booking-endDate">Pick the end date</label>
-      <input id="endDate" name="endDate" type="Date" [(ngModel)]="newDate.endDate" required >
-      <p>{{newDate.endDate}}</p>
-    </div>
-    <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
-  
-  </form>
-
-  <!-- <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm" novalidate>
-      <p> Username
-        <input type="text" name="username" [(ngModel)]="username"
-              #myUsername="ngModel" minlength="6" />
-      </p>
-      <div *ngIf="myUsername.errors && (myUsername.dirty || myUsername.touched)">
-        <p class="error" [hidden]="!myUsername.errors.minlength">
-          Username must be at least 6 characters long.
-        </p>
-      </div>
-      <p> Password
-        <input type="password" name="password" [(ngModel)]="password"
-              #myPassword="ngModel" required />
-      </p>
-      <div *ngIf="myPassword.errors && (myPassword.dirty || myPassword.touched)">
-        <p class="error" [hidden]="!myPassword.errors.required">
-          Password is required
-        </p>
-      </div>
-      <button type="submit"> signup </button>
-    </form> -->
