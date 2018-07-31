@@ -17,6 +17,7 @@ exports.getVans = function(req, res, next) {
       .then(item => res.status(200).json(item))
       .catch (e=> res.status(500).send(e));
   }
+  
 
 //   function checkRoles(role) {
 //     return function(req, res, next) {

@@ -14,11 +14,23 @@ exports.getBookings = function(req, res, next) {
     .catch(e=>res.status(500).send(e));
   }
 
+  exports.getBookingsbyVan = function(req, res, next) {
+    Booking.find({"_van" : req.params._van})
+    .populate("_van")
+    .populate("_user")
+    .then(items=>res.status(200).json(items))
+    .catch (e=> res.status(500).send(e));
+  
+  }
+
 exports.getBooking = function (req,res,next){
     Booking.findById(req.params.id)
     .then(item => res.status(200).json(item))
     .catch (e=> res.status(500).send(e));
 }
+
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // USER con el ID y ADMIN
 function ArrayDates (start,totalDays){
@@ -76,7 +88,7 @@ exports.postBooking = (req, res, next)=>{
     let arrayDates = ArrayDates(start,totalDays);
     console.log("estoy aqui")
     // tengo que mirar bien la query de mongoose para hacer el filtrado !!!!!
-    Booking.find({$or:[ { $and: [{"startDate":{$gte: start}},{"endDate":{$lte:end}} ] },{ $and: [{"startDate":{$lte: start}},{"endDate":{$gte:end}} ] },{ $and:[ {"startDate":{$gte:start}},{"startDate":{$lte:end}},{"endDate":{$gte:end}} ] },{$and:[{"startDate":{$lte:start}},{"endDate":{$gte:start}},{"endDate":{$lte:end}}]}]})
+    Booking.find({$or:[ { $and: [{"startDate":{$gte: start}},{"endDate":{$lte:end}} ] },{ $and: [{"startDate":{$lte: start}},{"endDate":{$te:end}} ] },{ $and:[ {"startDate":{$gte:start}},{"startDate":{$lte:end}},{"endDate":{$gte:end}} ] },{$and:[{"startDate":{$lte:start}},{"endDate":{$gte:start}},{"endDate":{$lte:end}}]}]})
     .then(b=> {
         console.log("longitud de los bookings "+b.length);
                 if (b.length==0){
