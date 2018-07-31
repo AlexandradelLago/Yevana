@@ -47,7 +47,8 @@ exports.postVan = (req, res, next)=>{
                     pax:req.body.pax,
                     beds:req.body.beds,
                     fuel:req.body.fuel
-                    }
+                    },
+                bookedDays:[]
             });
             
             newVan.save()

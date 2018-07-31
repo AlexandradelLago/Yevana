@@ -41,7 +41,8 @@ const vehiculoData =   [
     pax:3,
     beds:1,
     fuel:"Diesel"
-    }},
+    },
+    bookedDays:[]},
     {
       price: [70,90,110],
       brand: "Mercedes",
@@ -55,7 +56,8 @@ const vehiculoData =   [
       pax:3,
       beds:1,
       fuel:"Diesel"
-      }}];
+      },
+    bookedDays:[]}];
 Van.create(vehiculoData, (err, docs) => {
     if (err) {
       throw err;
