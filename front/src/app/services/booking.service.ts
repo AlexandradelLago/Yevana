@@ -17,11 +17,19 @@ export class BookingService {
     return this.http.get(`${this.baseURL}/booking`)
       .map((res) => res.json());
   }
+
+  getListBookingsByVan(_van):Observable<any> {
+    console.log("estoy dentro del listado de bookings por van")
+    return this.http.get(`${this.baseURL}/booking/van/${_van}`)
+      .map((res) => res.json());
+  }
   
   newBooking(values,_van):Observable<any> {
     return this.http.post(`${this.baseURL}/booking`,{values,_van})
       .map((res) => res.json());
   }
+
+
   
   getBooking(id):Observable<any> {
     return this.http.get(`${this.baseURL}/booking/${id}`)

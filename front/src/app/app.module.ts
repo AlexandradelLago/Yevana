@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //import { MaterializeModule } from 'angular2-materialize';
 import * as $ from 'jquery';
@@ -44,7 +45,8 @@ import { BookingService } from './services/booking.service';
     FormsModule,
     HttpModule,
     CalendarModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [VansService,AuthService,BookingService],
   bootstrap: [AppComponent]

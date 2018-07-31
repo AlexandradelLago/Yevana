@@ -8,23 +8,43 @@
   {{diagnostic}}
   
   <button (click)="showDetails()">Details</button>
-  
   <div   *ngIf="van" class="card col s6">
     <img class="circle responsive-img" src="assets/images/{{van.image}}" alt="image of van" >
     <p>{{van.description.long}}</p>
     <p>{{van.name}}</p>
   </div>
+
+  <button (click)="showBookings()">Details of bookings</button>
+  <div   *ngIf="bookingListbyVan" class="card col s6" >
+    <div   *ngFor="let booking of bookingListByVan">
+<div>
+         <p>HOLA</p>
+        <p>{{b.startDate}}</p>
+        <p>{{b.endDate}}</p>
+</div>
+    
+    </div>
+       
+     
+
+    
+   
+  </div>
+  
+
+
   <div class="s4">
     <form class="form" (ngSubmit)="addBooking(myForm,contactId)" #myForm="ngForm">
   
       <div class="s2" >
         <label for="booking-startDate">Pick the start date</label>
-        <input id="startDate" type="Date" [(ngModel)]="newDate.startDate" name="startDate" min="2018-08-10" max="2018-09-30" required >
+        <p-calendar  name="startDate" [disabledDates]="invalidDates" [(ngModel)]="newDate.startDate" [minDate]="minDateValue" [maxDate]="maxDateValue" [readonlyInput]="true"></p-calendar>
       </div>
         <p>{{newDate.startDate}}</p>
       <div class=" s2">
         <label for="booking-endDate">Pick the end date</label>
-        <input id="endDate" name="endDate" type="Date" [(ngModel)]="newDate.endDate" min="2018-08-10" max="2018-09-30" required >
+        <p-calendar name="endDate" [(ngModel)]="newDate.endDate" [disabledDates]="invalidDates" ></p-calendar>
+       
         <p>{{newDate.endDate}}</p>
       </div>
       <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>

@@ -13,24 +13,47 @@ export class BookingComponent implements OnInit {
   van; savedVan;
   contactId: String;
   today:Date;
+  invalidDates:Date[]=[];
+  bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
+  minDateValue:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
   newDate :Object={ startDate: '', endDate:''}
   constructor(private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }
 
   ngOnInit() {
     
- 
-
     this.route.params
-      .subscribe((params) => this.contactId = params['id']);
-    this.route.params
-      .subscribe ((params)=> this.vansService.getVan(params['id'])
+      .subscribe ((params)=>{ 
+        this.contactId = params['id'];
+        this.vansService.getVan(params['id'])
                              .subscribe((van)=> {
+                               console.log(van);
                                  this.van =van;
                                 this.savedVan=van;
-                                })
-      
-       )} 
+                              })
+       this.bookingService.getListBookingsByVan(params['id'])
+                            .subscribe((bookingList)=>{
+                              bookingList.forEach(b=>{
+                                //this.results = [ ...this.results, ...data.results];
+                                console.log("este es el array de dates del cada booking")
+                                console.log(this.ArrayDates(b.startDate,b.totalDays))
+                                this.invalidDates =[...this.invalidDates,...this.ArrayDates(b.startDate,b.total)] 
+                              console.log(this.invalidDates)
+                                this.bookingListbyVan.push(b)
+                              });
+                              this.savedBookingListByVan=this.bookingListbyVan;
+                              console.log(this.bookingListbyVan)
+                              console.log(JSON.stringify(this.bookingListbyVan[0].startDate))
+                              //console.log(this.bookingListbyVan[0].startDate)
+                            })
+                                
+    
+      } 
+  )
+
+
+
+} 
 
 
 get diagnostic() { return JSON.stringify(this.newDate); }
@@ -47,7 +70,36 @@ console.log("este es mi van id"+contactId)
   showDetails() {
     (this.van)?  this.van=null : this.van=this.savedVan;
  
+  }
+  showBookings() {
+    (this.bookingListbyVan)?  this.bookingListbyVan=null : this.bookingListbyVan=this.savedBookingListByVan;
+ 
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // USER con el ID y ADMIN
+
+  
+ArrayDates (start,totalDays){
+  let arrayDates = [new Date(start)];
+  for (var i=1;i<totalDays+1;i++){
+      arrayDates.push(this.addDays(arrayDates[i-1],1));
+  }
+  return arrayDates;
+  //.datepicker("getDate").toLocalTime().toJSON();
+};
+totalDays(start,end){
+  var ONE_DAY = 1000 * 60 * 60 * 24
+  var totalDays = Math.round(Math.abs(end - start)/ONE_DAY);
+  return totalDays;
 }
+
+addDays(date,days) {
+  var dat = new Date(date);
+  dat.setDate(dat.getDate() + days);
+  return dat
+};
+
 }
 
 
