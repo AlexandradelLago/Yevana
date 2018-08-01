@@ -16,7 +16,7 @@ export class BookingComponent implements OnInit {
   invalidDates:Date[]=[];
   bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
   minDateValue:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
-  newDate :Object={ startDate: '', endDate:''}
+  newDate={startDate: '',endDate:''}
   constructor(private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }
 
