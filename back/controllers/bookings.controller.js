@@ -88,7 +88,7 @@ exports.postBooking = (req, res, next)=>{
     let arrayDates = ArrayDates(start,totalDays);
     console.log("estoy aqui")
     // tengo que mirar bien la query de mongoose para hacer el filtrado !!!!!
-    Booking.find({$or:[ { $and: [{"startDate":{$gte: start}},{"endDate":{$lte:end}} ] },{ $and: [{"startDate":{$lte: start}},{"endDate":{$te:end}} ] },{ $and:[ {"startDate":{$gte:start}},{"startDate":{$lte:end}},{"endDate":{$gte:end}} ] },{$and:[{"startDate":{$lte:start}},{"endDate":{$gte:start}},{"endDate":{$lte:end}}]}]})
+    Booking.find({$or:[ { $and: [{"startDate":{$gte: start}},{"endDate":{$lte:end}} ] },{ $and: [{"startDate":{$lte: start}},{"endDate":{$lte:end}} ] },{ $and:[ {"startDate":{$gte:start}},{"startDate":{$lte:end}},{"endDate":{$gte:end}} ] },{$and:[{"startDate":{$lte:start}},{"endDate":{$gte:start}},{"endDate":{$lte:end}}]}]})
     .then(b=> {
         console.log("longitud de los bookings "+b.length);
                 if (b.length==0){

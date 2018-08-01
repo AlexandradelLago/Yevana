@@ -38,12 +38,18 @@
   
       <div class="s2" >
         <label for="booking-startDate">Pick the start date</label>
-        <p-calendar  name="startDate" [disabledDates]="invalidDates" [(ngModel)]="newDate.startDate" [minDate]="minDateValue" [maxDate]="maxDateValue" [readonlyInput]="true"></p-calendar>
+        <p-calendar [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
+        [(ngModel)]="newDate.startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
+         [readonlyInput]="true" >
+         <p>{{newDate.startDate}}</p>
+        
+        </p-calendar>
       </div>
-        <p>{{newDate.startDate}}</p>
+      
       <div class=" s2">
         <label for="booking-endDate">Pick the end date</label>
-        <p-calendar name="endDate" [(ngModel)]="newDate.endDate" [disabledDates]="invalidDates" ></p-calendar>
+        <p-calendar [showIcon]="true" name="endDate" [(ngModel)]="newDate.endDate"
+         [disabledDates]="invalidDates" ></p-calendar>
        
         <p>{{newDate.endDate}}</p>
       </div>
