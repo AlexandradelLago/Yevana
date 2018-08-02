@@ -45,7 +45,7 @@ export class BookingComponent implements OnInit {
                              // console.log("dias reservados "+this.invalidDates)
                                 this.bookingListbyVan.push(b)
                               });
-                              this.savedBookingListByVan=this.bookingListbyVan;
+                              this.savedBookingListByVan=this.bookingList;
                              // console.log(this.bookingListbyVan)
                               //console.log(JSON.stringify(this.bookingListbyVan[0].startDate))
                               //console.log(this.bookingListbyVan[0].startDate)
@@ -78,7 +78,7 @@ console.log("este es mi van id"+contactId)
  
   }
   showBookings() {
-    (this.bookingListbyVan)?  this.bookingListbyVan=null : this.bookingListbyVan=this.savedBookingListByVan;
+    (this.bookingList)?  this.bookingList=null : this.bookingList=this.savedBookingListByVan;
  
   }
 
