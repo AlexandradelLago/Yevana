@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {Router} from '@angular/router';
 import {VansService} from '../services/vans.service';
 import {BookingService} from '../services/booking.service';
 
@@ -19,7 +20,7 @@ export class BookingComponent implements OnInit {
   bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
   minDateValue:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
   newDate={startDate: '',endDate:''}
-  constructor(private route: ActivatedRoute, private vansService:VansService
+  constructor(private router : Router, private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }
 
   ngOnInit() {
@@ -55,22 +56,24 @@ export class BookingComponent implements OnInit {
       } 
   )
 
-
+// es en el front donde tengo que guardar el cliente cuando hago el booking
 
 } 
 
+// fillOutClient(){
+//   this.router.navigate(['/alquiler/client'])
+// }
 
 get diagnostic() { return JSON.stringify(this.newDate); }
 addBooking(myForm,contactId){
-console.log("este es mi van id"+contactId)
-  console.log("este es mi formvalue"+myForm.value)
-  console.log("estoy dentro de submit form")
+// console.log("este es mi van id"+contactId)
+//   console.log("este es mi formvalue"+myForm.value)
+//   console.log("estoy dentro de submit form")
   this.bookingService.newBooking(this.newDate,contactId)
   .subscribe(b =>{
     this.booking = b;
     console.log("booking made!")
-
-    //setTimeout (() => { this.route.navigate(['bookings']); }, 1000);
+   // setTimeout (() => { this.router.navigate(['/alquiler/client']); }, 1000);
   });
 }
   showDetails() {

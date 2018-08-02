@@ -24,10 +24,17 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { SeasonComponent } from './season/season.component';
+import { BookingsListComponent } from './bookings-list/bookings-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 // services
 import {VansService} from './services/vans.service';
 import {AuthService} from './services/auth.service';
 import { BookingService } from './services/booking.service';
+import { ClientComponent } from './client/client.component';
+
+
 
 
 @NgModule({
@@ -38,7 +45,11 @@ import { BookingService } from './services/booking.service';
     HomeComponent,
     NavBarComponent,
     LoginComponent,
-    AdminNavComponent
+    AdminNavComponent,
+    SeasonComponent,
+    BookingsListComponent,
+    DashboardComponent,
+    ClientComponent
   ],
   imports: [
     BrowserModule,
