@@ -13,6 +13,7 @@ export class BookingComponent implements OnInit {
   van; savedVan;
   contactId: String;
   today:Date;
+  booking;
   invalidDates:Date[]=[];
   bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
   minDateValue:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
@@ -63,7 +64,9 @@ console.log("este es mi van id"+contactId)
   console.log("estoy dentro de submit form")
   this.bookingService.newBooking(this.newDate,contactId)
   .subscribe(b =>{
+    this.booking = b;
     console.log("booking made!")
+
     //setTimeout (() => { this.route.navigate(['bookings']); }, 1000);
   });
 }

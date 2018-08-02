@@ -24,13 +24,12 @@
 </div>
     
     </div>
-       
-     
-
-    
-   
   </div>
-  
+  <div *ngIf="booking">
+<p>BOOKING MADE!</p>
+<p>{{booking.startDate}}</p>
+<p>{{booking|json}}</p>
+  </div>
 
 
   <div class="s4">
