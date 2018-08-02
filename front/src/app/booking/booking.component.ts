@@ -38,12 +38,12 @@ export class BookingComponent implements OnInit {
                                 console.log("este es el array de dates del cada booking")
                                 console.log(this.ArrayDates(b.startDate,b.totalDays))
                                 this.invalidDates =[...this.invalidDates,...this.ArrayDates(b.startDate,b.total)] 
-                              console.log(this.invalidDates)
+                              console.log("dias reservados "+this.invalidDates)
                                 this.bookingListbyVan.push(b)
                               });
                               this.savedBookingListByVan=this.bookingListbyVan;
-                              console.log(this.bookingListbyVan)
-                              console.log(JSON.stringify(this.bookingListbyVan[0].startDate))
+                             // console.log(this.bookingListbyVan)
+                              //console.log(JSON.stringify(this.bookingListbyVan[0].startDate))
                               //console.log(this.bookingListbyVan[0].startDate)
                             })
                                 
