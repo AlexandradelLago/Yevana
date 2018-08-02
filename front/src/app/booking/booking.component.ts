@@ -14,6 +14,7 @@ export class BookingComponent implements OnInit {
   contactId: String;
   today:Date;
   booking;
+  bookingList;
   invalidDates:Date[]=[];
   bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
   minDateValue:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
@@ -28,18 +29,20 @@ export class BookingComponent implements OnInit {
         this.contactId = params['id'];
         this.vansService.getVan(params['id'])
                              .subscribe((van)=> {
-                               console.log(van);
+                               console.log(JSON.stringify(van));
                                  this.van =van;
                                 this.savedVan=van;
                               })
        this.bookingService.getListBookingsByVan(params['id'])
                             .subscribe((bookingList)=>{
+                              this.bookingList=bookingList;
+                              console.log(JSON.stringify(bookingList));
                               bookingList.forEach(b=>{
                                 //this.results = [ ...this.results, ...data.results];
-                                console.log("este es el array de dates del cada booking")
-                                console.log(this.ArrayDates(b.startDate,b.totalDays))
+                               // console.log("este es el array de dates del cada booking")
+                               // console.log(this.ArrayDates(b.startDate,b.totalDays))
                                 this.invalidDates =[...this.invalidDates,...this.ArrayDates(b.startDate,b.total)] 
-                              console.log("dias reservados "+this.invalidDates)
+                             // console.log("dias reservados "+this.invalidDates)
                                 this.bookingListbyVan.push(b)
                               });
                               this.savedBookingListByVan=this.bookingListbyVan;

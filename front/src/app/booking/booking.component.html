@@ -15,12 +15,11 @@
   </div>
 
   <button (click)="showBookings()">Details of bookings</button>
-  <div   *ngIf="bookingListbyVan" class="card col s6" >
-    <div   *ngFor="let booking of bookingListByVan">
+  <div   *ngIf="bookingList" class="card col s6" >
+    <div   *ngFor="let booking of bookingList">
 <div>
-         <p>HOLA</p>
-        <p>{{b.startDate}}</p>
-        <p>{{b.endDate}}</p>
+        <p>{{booking.startDate}} , {{booking.endDate}}</p>
+      
 </div>
     
     </div>

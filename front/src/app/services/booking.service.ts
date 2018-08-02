@@ -19,7 +19,6 @@ export class BookingService {
   }
 
   getListBookingsByVan(_van):Observable<any> {
-    console.log("estoy dentro del listado de bookings por van")
     return this.http.get(`${this.baseURL}/booking/van/${_van}`)
       .map((res) => res.json());
   }
