@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,8 +7,17 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var mongoose = require('mongoose');
-var connection = mongoose.connect('mongodb://localhost/yevana')
-    .then(console.log("Connected to DB!!"));
+
+// var connection = mongoose.connect('mongodb://localhost/yevana')
+//     .then(console.log("Connected to DB!!"));
+
+// utilizando variable de entorno y localhost 3000
+// mongoose.connect(process.env.web)
+// .then(console.log(`connected to ${process.env.web}`));
+
+   mongoose.connect(process.env.MONGODB_URL)
+  .then(console.log(`connected to ${process.env.MONGODB_URL}`));
+
 
 //module.exports = connection;
 
