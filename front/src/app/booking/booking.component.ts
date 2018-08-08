@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Router} from '@angular/router';
 import {VansService} from '../services/vans.service';
 import {BookingService} from '../services/booking.service';
+import { JsonpModule } from '../../../node_modules/@angular/http';
 
 @Component({
   selector: 'app-booking',
@@ -12,7 +13,7 @@ import {BookingService} from '../services/booking.service';
 export class BookingComponent implements OnInit {
   
   van; savedVan;
-  contactId: String;
+  vanId: String;
   today:Date;
   booking;
   bookingList;
@@ -27,7 +28,8 @@ export class BookingComponent implements OnInit {
     
     this.route.params
       .subscribe ((params)=>{ 
-        this.contactId = params['id'];
+        this.vanId = params['id'];
+        console.log(this.vanId);
         this.vansService.getVan(params['id'])
                              .subscribe((van)=> {
                                console.log(JSON.stringify(van));
@@ -65,15 +67,30 @@ export class BookingComponent implements OnInit {
 // }
 
 get diagnostic() { return JSON.stringify(this.newDate); }
-addBooking(myForm,contactId){
-// console.log("este es mi van id"+contactId)
+addBooking(myForm,vanId){
+console.log("este es mi van id"+vanId)
+console.log(myForm)
 //   console.log("este es mi formvalue"+myForm.value)
 //   console.log("estoy dentro de submit form")
-  this.bookingService.newBooking(this.newDate,contactId)
+  this.bookingService.newBooking(myForm.value,vanId)
   .subscribe(b =>{
     this.booking = b;
+    console.log(JSON.stringify(this.booking));
+    // guardarme b en local storage para poder usarlo en cliente
     console.log("booking made!")
-   // setTimeout (() => { this.router.navigate(['/alquiler/client']); }, 1000);
+    var user = {
+      _van:b._van,
+      startDate:b.startDate,
+      endDate:b.endDate,
+      price : b.price,
+      _id:b._id,
+      paid:b.paid,
+      total:b.total
+    };
+   localStorage.setItem('user', JSON.stringify(user)); 
+   console.log(this.vanId);
+   this.router.navigate([`/alquiler/${b._van}/client`])
+  // setTimeout (() => { ; }, 1000);
   });
 }
   showDetails() {

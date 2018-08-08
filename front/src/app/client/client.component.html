@@ -1,3 +1,28 @@
 <p>
   client works!
+  {{user|json}}
 </p>
+
+
+<div class="s4">
+  <form class="form" (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
+
+   <div>
+    <label for="name">Name</label>
+    <input placeholder = "your name"type="text" name="name" id="name">
+   </div>
+    <div>
+  <label for="email">Email</label>
+  <input placeholder = "your email"type="text" name="email" id="email">
+  </div>
+   <div>
+    <label for="password">Password</label>
+    <input placeholder = "Enter your password"type="password" name="password" id="password">
+   </div>
+    
+
+   <button class="btn waves-effect waves-light" type ="submit">Add client</button>
+  
+  </form>
+
+</div>

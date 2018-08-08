@@ -25,11 +25,15 @@ export class BookingService {
   
   newBooking(values,_van):Observable<any> {
     return this.http.post(`${this.baseURL}/booking`,{values,_van})
-      .map((res) => res.json());
+      .map((res) => res.json())
+      .catch((e: any) => Observable.throw(alert(e._body)));
   }
 
-
-  
+ updateBooking(booking):Observable<any> {
+  return this.http.put(`${this.baseURL}/booking/${booking._id}`,{booking})
+    .map((res) => res.json())
+    .catch((e: any) => Observable.throw(alert(e._body)));
+}
   getBooking(id):Observable<any> {
     return this.http.get(`${this.baseURL}/booking/${id}`)
       .map((res) => res.json());

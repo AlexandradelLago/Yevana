@@ -2,7 +2,7 @@
 
 <div class="row container col s4 m2">
   
-    This is the page for the van: {{contactId }}
+    This is the page for the van: {{vanId }}
   
   
   {{diagnostic}}
@@ -32,7 +32,7 @@
 
 
   <div class="s4">
-    <form class="form" (ngSubmit)="addBooking(myForm,contactId)" #myForm="ngForm">
+    <form class="form" (ngSubmit)="addBooking(myForm,vanId)" #myForm="ngForm">
   
       <div class="s2" >
         <label for="booking-startDate">Pick the start date</label>

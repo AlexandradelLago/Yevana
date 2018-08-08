@@ -15,7 +15,7 @@ export const routes:Routes = [
     {path:"login", component:LoginComponent},
     {path:"alquiler" , component:ListComponent},
     {path:"alquiler/:id" , component:BookingComponent},
-    {path:"alquiler/client" , component:ClientComponent},
+    {path:"alquiler/:id/client" , component:ClientComponent},
     {path:"admin", component:DashboardComponent},
     {path:"admin/bookings", component:BookingsListComponent},
     {path:"admin/season", component:SeasonComponent}
