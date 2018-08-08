@@ -20,21 +20,22 @@ exports.getUsers = function(req, res, next) {
     .catch(e=>res.status(500).send(e));
   }
 
-  // // falta hacer un getUser
-  // exports.getUser = function(req, res, next) {
-  //   User.findbyID(req.user._id)
-  //   .then(items=>res.status(200).json(items))
-  //   .catch(e=>res.status(500).send(e));
-  // }
+  // falta hacer un getUser
+  exports.getOne = function(req, res, next) {
+    User.findById(req.params.id)
+    .then(items=>res.status(200).json(items))
+    .catch(e=>res.status(500).send(e));
+  }
 
 // solo para USER en cuestion
 exports.postUser = (req, res, next)=>{
+  console.log("este es el req.body de User  s"+req.body)
     const newUser = new User({
       name: req.body.name,
       username:req.body.username,
       email: req.body.email,
       password: req.body.password,
-      role:req.body.role
+      //role:req.body.role
     });
 
     newUser.save()
