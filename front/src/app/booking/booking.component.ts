@@ -75,10 +75,10 @@ console.log(myForm)
   this.bookingService.newBooking(myForm.value,vanId)
   .subscribe(b =>{
     this.booking = b;
-    console.log(JSON.stringify(this.booking));
+    console.log("este es el booking que he hecho "+JSON.stringify(this.booking));
     // guardarme b en local storage para poder usarlo en cliente
     console.log("booking made!")
-    var user = {
+    var halfbooking = {
       _van:b._van,
       startDate:b.startDate,
       endDate:b.endDate,
@@ -87,9 +87,9 @@ console.log(myForm)
       paid:b.paid,
       total:b.total
     };
-   localStorage.setItem('user', JSON.stringify(user)); 
-   console.log(this.vanId);
-   this.router.navigate([`/alquiler/${b._van}/client`])
+   localStorage.setItem('booking', JSON.stringify(halfbooking)); 
+  //  console.log(this.vanId);
+   this.router.navigate([`/alquiler/${b._id}/client`])
   // setTimeout (() => { ; }, 1000);
   });
 }

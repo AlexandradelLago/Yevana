@@ -14,13 +14,13 @@ export class UserService {
 
 
   getList() {
-    return this.http.get(`${this.baseURL}/`)
+    return this.http.get(`${this.baseURL}/user`)
       .map((res) => res.json());
   }
   
   newUser(form) {
     console.log(form);
-    return this.http.post(`${this.baseURL}/new`,form)
+    return this.http.post(`${this.baseURL}/user/new`,form)
       .map((res) => res.json());
   }
   
@@ -30,12 +30,12 @@ export class UserService {
   }
 
   edit(van) {
-    return this.http.patch(`${this.baseURL}/edit/${van.id}`, van)
+    return this.http.patch(`${this.baseURL}/user/edit/${van.id}`, van)
       .map((res) => res.json());
   }
   
   remove(id) {
-    return this.http.delete(`${this.baseURL}/delete/${id}`)
+    return this.http.delete(`${this.baseURL}/user/delete/${id}`)
       .map((res) => res.json());
   }
 

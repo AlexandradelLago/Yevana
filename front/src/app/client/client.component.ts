@@ -18,7 +18,7 @@ export class ClientComponent implements OnInit {
     private bookingService:BookingService, private userService:UserService)  { }
 
   ngOnInit() {
-      this.booking = JSON.parse(localStorage.getItem('user'));
+      this.booking = JSON.parse(localStorage.getItem('booking'));
       console.log(this.booking);
 
 
@@ -27,15 +27,19 @@ export class ClientComponent implements OnInit {
 
   addClient(myForm){
   
-    console.log("este es mi form "+myForm[0])
+    console.log("este es mi form "+myForm.value)
     //   console.log("este es mi formvalue"+myForm.value)
     //   console.log("estoy dentro de submit form")
       this.userService.newUser(myForm.value)
       .subscribe(u =>{
         console.log("dentro de userService NEW")
-          console.log(JSON.stringify(u));
+          console.log("este es mi usuario"+JSON.stringify(u));
           this.booking._user=u._id;
-          this.bookingService.updateBooking(this.booking);
+          console.log(this.booking);
+          this.bookingService.updateBooking(this.booking)
+          .subscribe(b=>{
+            console.log("este es mi boking updated"+JSON.stringify(b));
+          });
   
       });
     }

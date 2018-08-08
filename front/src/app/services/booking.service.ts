@@ -30,7 +30,9 @@ export class BookingService {
   }
 
  updateBooking(booking):Observable<any> {
-  return this.http.put(`${this.baseURL}/booking/${booking._id}`,{booking})
+   console.log("dentro de mi booking update!!!")
+   console.log("lo que estoy updateando "+booking);
+  return this.http.patch(`${this.baseURL}/booking/${booking._id}`,{booking:booking})
     .map((res) => res.json())
     .catch((e: any) => Observable.throw(alert(e._body)));
 }
