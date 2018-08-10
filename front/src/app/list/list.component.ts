@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
   
   ngOnInit() {
     this.vansService.getList()
-    .subscribe(vans=> this.vans = vans);
+    .subscribe(vans=>{ this.vans = vans; console.log(this.vans)})
   }
 
   onSubmit(event){

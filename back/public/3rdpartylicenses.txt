@@ -140,6 +140,10 @@ MIT
 MIT
 MIT
 
+angular2-fusioncharts@1.0.3
+MIT
+MIT
+
 jquery@2.2.4
 MIT
 Copyright jQuery Foundation and other contributors, https://jquery.org/

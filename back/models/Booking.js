@@ -8,7 +8,7 @@ const bookingSchema = new Schema({
     price            : {type : Number, required:true},
     paid             : { type: Boolean, default: false},
     _user            : { type: Schema.Types.ObjectId, ref: 'User'},
-    _van             :{ type: Schema.Types.ObjectId, ref: 'Van' }
+    _van             : { type: Schema.Types.ObjectId, ref: 'Van' }
 });
 
 const Booking = mongoose.model("Booking", bookingSchema);

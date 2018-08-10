@@ -8,6 +8,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const expressLayouts     = require('express-ejs-layouts');
+const bodyParser = require('body-parser');
+
 
 var mongoose = require('mongoose');
 
@@ -56,6 +59,8 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+//añadi esta linea despues del bodyparser
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

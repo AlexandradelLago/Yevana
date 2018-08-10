@@ -23,16 +23,14 @@ export class BookingService {
       .map((res) => res.json());
   }
   
-  newBooking(values,_van):Observable<any> {
-    return this.http.post(`${this.baseURL}/booking`,{values,_van})
+  newBooking(values):Observable<any> {
+    return this.http.post(`${this.baseURL}/booking`,values)
       .map((res) => res.json())
       .catch((e: any) => Observable.throw(alert(e._body)));
   }
 
  updateBooking(booking):Observable<any> {
-   console.log("dentro de mi booking update!!!")
-   console.log("lo que estoy updateando "+booking);
-  return this.http.patch(`${this.baseURL}/booking/${booking._id}`,{booking:booking})
+  return this.http.patch(`${this.baseURL}/booking/${booking._id}`,booking)
     .map((res) => res.json())
     .catch((e: any) => Observable.throw(alert(e._body)));
 }

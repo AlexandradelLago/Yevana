@@ -24,27 +24,29 @@
     
     </div>
   </div>
-  <div *ngIf="booking">
+<div *ngIf="booking">
 <p>BOOKING MADE!</p>
-<p>{{booking.startDate}}</p>
-<p>{{booking|json}}</p>
+<p>{{newbooking.startDate}}</p>
+<p>{{newbooking|json}}</p>
   </div>
 
 
   <div class="s4">
-    <form class="form" (ngSubmit)="addBooking(myForm,vanId)" #myForm="ngForm">
-  
+    <form class="form" (ngSubmit)="addBooking(myForm)" #myForm="ngForm">
+        <div *ngIf="van">
+            <input [(ngModel)]="vanId" type="hidden" name="_van" value="{{vanId}}">
+        </div>
       <div class="s2" >
         <label for="booking-startDate">Pick the start date</label>
         <p-calendar [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
-        [(ngModel)]="newDate.startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
-         [readonlyInput]="true" ><p>{{newDate.startDate}}</p> </p-calendar>
+        [(ngModel)]="startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
+         [readonlyInput]="true" ><p>{{startDate}}</p> </p-calendar>
       </div>
       <div class=" s2">
         <label for="booking-endDate">Pick the end date</label>
-        <p-calendar [showIcon]="true" name="endDate" [(ngModel)]="newDate.endDate"
-         [disabledDates]="invalidDates" >  </p-calendar>
-        <p>{{newDate.endDate}}</p>
+        <p-calendar [showIcon]="true" name="endDate" [(ngModel)]="endDate"
+         [disabledDates]="invalidDates"  [minDate]="startDate" [maxDate]="maxDateValue" ><p>{{endDate}}</p> </p-calendar>
+      
       </div>
       <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
     
@@ -56,5 +58,6 @@
  
 
 </div>
+
 
 

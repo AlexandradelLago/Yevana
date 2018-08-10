@@ -76,10 +76,10 @@ function GetPrice(car,arrayDates,seasons){
 
 
 exports.postBooking = (req, res, next)=>{
+    console.log("este es mi req.body "+JSON.stringify(req.body))
     // paso las fechas a date y a localtime para quitarle el offset de uso horario
-    let start = new Date(req.body.values.startDate).toLocalTime();
-    console.log("el id de van en el back" +req.body._van);
-    let end = new Date (req.body.values.endDate).toLocalTime();
+    let start = new Date(req.body.startDate).toLocalTime();
+    let end = new Date (req.body.endDate).toLocalTime();
      // The number of milliseconds in one day
     let totalDays= TotalDays(start,end);
     // hago array de fechas de la reserva
@@ -129,8 +129,8 @@ exports.postBooking = (req, res, next)=>{
 // }
 
 // user con el ID y ADMIN
-exports.putBooking = (req,res,next)=>{
-    console.log("el req body de put "+req.body)
+exports.patchBooking = (req,res,next)=>{
+    console.log("el req body de put "+JSON.stringify(req.body));
     Booking.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .then(item=>res.status(200).json(item))
     .catch(e=>res.status(500).send(e));

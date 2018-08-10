@@ -1,11 +1,15 @@
+
+
+<app-nav-bar></app-nav-bar>
+
 <p *ngIf="booking"nn>
   client works!
   {{booking|json}}
 </p>
 
 
-<div class="s4">
-  <form class="form" (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
+<div class="s4 formClient">
+  <form class="form " (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
 
    <div>
     <label for="name">Name</label>
@@ -26,3 +30,7 @@
   </form>
 
 </div>
+
+
+
+
