@@ -2,33 +2,37 @@
 
 <app-nav-bar></app-nav-bar>
 
-<p *ngIf="booking"nn>
-  client works!
-  {{booking|json}}
-</p>
+<div class="fullpage">
 
-
-<div class="s4 formClient">
-  <form class="form " (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
-
-   <div>
-    <label for="name">Name</label>
-    <input  [(ngModel)]="name" placeholder = "your name"type="text" name="name" id="name">
-   </div>
-    <div>
-  <label for="email">Email</label>
-  <input  [(ngModel)]="email" placeholder = "your email"type="text" name="email" id="email">
-  </div>
-   <div>
-    <label for="password">Password</label>
-    <input  [(ngModel)]="password" placeholder = "Enter your password"type="password" name="password" id="password">
-   </div>
-    
-
-   <button class="btn waves-effect waves-light" type ="submit">Add client</button>
-  
-  </form>
-
+    <p *ngIf="booking"nn>
+        client works!
+        {{booking|json}}
+      </p>
+      
+      
+      <div class="s4 formClient">
+        <form class="form " (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
+      
+         <div>
+          <label for="name">Name</label>
+          <input  [(ngModel)]="name" placeholder = "your name"type="text" name="name" id="name">
+         </div>
+          <div>
+        <label for="email">Email</label>
+        <input  [(ngModel)]="email" placeholder = "your email"type="text" name="email" id="email">
+        </div>
+         <div>
+          <label for="password">Password</label>
+          <input  [(ngModel)]="password" placeholder = "Enter your password"type="password" name="password" id="password">
+         </div>
+          
+      
+         <button class="btn waves-effect waves-light" type ="submit">Add client</button>
+        
+        </form>
+      
+      </div>
+      
 </div>
 
 

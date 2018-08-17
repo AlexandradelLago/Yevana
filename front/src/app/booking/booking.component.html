@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="row container col s4 m2">
+<div class="row container col s4 m2 fullpage">
   
     This is the page for the van: {{vanId }}
   
@@ -31,29 +31,38 @@
   </div>
 
 
-  <div class="s4">
+
     <form class="form" (ngSubmit)="addBooking(myForm)" #myForm="ngForm">
-        <div *ngIf="van">
-            <input [(ngModel)]="vanId" type="hidden" name="_van" value="{{vanId}}">
-        </div>
-      <div class="s2" >
-        <label for="booking-startDate">Pick the start date</label>
-        <p-calendar [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
-        [(ngModel)]="startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
-         [readonlyInput]="true" ><p>{{startDate}}</p> </p-calendar>
-      </div>
-      <div class=" s2">
-        <label for="booking-endDate">Pick the end date</label>
-        <p-calendar [showIcon]="true" name="endDate" [(ngModel)]="endDate"
-         [disabledDates]="invalidDates"  [minDate]="startDate" [maxDate]="maxDateValue" ><p>{{endDate}}</p> </p-calendar>
-      
-      </div>
-      <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
+        <div class="s8 container">
+
+            <div *ngIf="van">
+                <input [(ngModel)]="vanId" type="hidden" name="_van" value="{{vanId}}">
+            </div>
     
+          <div class="input-group" >
+            <label for="booking-startDate">Pick the start date</label>
+            <p-calendar [inline]="true" [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
+            [(ngModel)]="startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
+             [readonlyInput]="true" ><p>{{startDate}}</p> </p-calendar>
+
+           
+          </div>
+          <div class="input-group">
+            <label for="booking-endDate">Pick the end date</label>
+            <p-calendar  [showIcon]="true" name="endDate" [(ngModel)]="endDate"
+             [disabledDates]="invalidDates"  [minDate]="startDate" [maxDate]="maxDateValue" ><p>{{endDate}}</p> </p-calendar>
+          
+          </div>
+          <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
+        
+
+        </div>
+       
     </form>
 
-  </div>
   
+  
+
  
  
 

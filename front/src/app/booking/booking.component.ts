@@ -3,8 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import {Router} from '@angular/router';
 import {VansService} from '../services/vans.service';
 import {BookingService} from '../services/booking.service';
+import * as $ from 'jquery';
 import { JsonpModule } from '../../../node_modules/@angular/http';
 import { getComponentViewDefinitionFactory } from '../../../node_modules/@angular/core/src/view';
+import {CalendarModule} from 'primeng/calendar';
+
 
 @Component({
   selector: 'app-booking',
@@ -27,6 +30,9 @@ export class BookingComponent implements OnInit {
   , private bookingService:BookingService) { }
 
   ngOnInit() {
+    // $(document).ready(function(){
+    //   (<any>$('.datepicker') ).datepicker();
+    // });
     
     this.minDateValue = this.getMinDateValue(this.minDateSeason);
 

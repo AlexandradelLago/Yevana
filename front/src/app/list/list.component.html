@@ -4,7 +4,7 @@
     My Vans
   </h1>
 
-  <section class="contactlist container">
+  <section class="contactlist container fullpage">
   <div class="col s6 m2" class="contact" *ngFor= "let van of vans">
       <h2 class="header">{{van.brand}}</h2>
       <div class="card">
@@ -22,8 +22,7 @@
           <p> <i class="material-icons">build</i>  {{van.features.motor}}  <i class="material-icons">local_gas_station</i>   {{van.features.fuel}} </p>
           <p> <i class="material-icons">group</i>  {{van.features.pax}}  <i class="material-icons">hotel</i>   {{van.features.beds}} </p>
           <div class="card-action">
-        
-            <a  [routerLink]="['/alquiler', van._id]" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Book</i></a>
+            <a  [routerLink]="['/alquiler', van._id]" class="btn-large waves-effect waves-light red"><i class="material-icons">check</i>Book</a>
           </div>
     
         </div>

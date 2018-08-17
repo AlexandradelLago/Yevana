@@ -40,6 +40,11 @@ p {
   }
 }
 
+
+body {
+  min-height: 100vh;
+}
+
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;

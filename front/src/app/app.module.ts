@@ -20,7 +20,7 @@ import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import * as OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 //import { MaterializeModule } from 'angular2-materialize';
-import * as $ from 'jquery';
+
 
 // routes
 import { routes } from './routes/app.routing'
@@ -36,19 +36,14 @@ import { LoginComponent } from './login/login.component';
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { SeasonComponent } from './season/season.component';
 import { BookingsListComponent } from './bookings-list/bookings-list.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientComponent } from './client/client.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // services
 import {VansService} from './services/vans.service';
 import {AuthService} from './services/auth.service';
 import { BookingService } from './services/booking.service';
 import { UserService } from './services/user.service';
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -61,21 +56,21 @@ import { UserService } from './services/user.service';
     AdminNavComponent,
     SeasonComponent,
     BookingsListComponent,
-    DashboardComponent,
-    ClientComponent
+    ClientComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    CalendarModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
        // Specify FusionChartsModule as an import 
     // and pass FusionCharts and Charts as a dependency
     // You can pass all other FusionCharts modules such as Charts, PowerCharts
     // Maps, Widgets e.t.c. after FusionCharts
-    FusionChartsModule.forRoot(FusionCharts, Charts,FintTheme,OceanTheme)
+    FusionChartsModule.forRoot(FusionCharts, Charts,FintTheme,OceanTheme),
+    CalendarModule
   ],
   providers: [VansService,AuthService,BookingService,UserService],
   bootstrap: [AppComponent]
