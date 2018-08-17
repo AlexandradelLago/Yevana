@@ -6,13 +6,13 @@ var userSchema = new Schema({
     password: { type: String, required: [true, 'Please enter your password'],
     minlength: [6, 'Name must be greater than 6 characters']},
     email:{type:String,match: /.+@.+/, required:[true, 'Please enter your email']},
-    username: { type: String, default: "ADMIN" },
-    name:{type:String, default: "ADMIN"},
+    username: { type: String, default: "USER" },
+    name:{type:String, default: "USER"},
     role:{
         type:String,
         enum:["USER", "COLABORATOR", "ADMIN"],
-        default: "ADMIN"
-    },
+        default: "USER"
+    }
 });
 
 var User = mongoose.model('User', userSchema);
