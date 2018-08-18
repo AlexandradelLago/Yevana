@@ -9,8 +9,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 const expressLayouts     = require('express-ejs-layouts');
+// passport 
 const bodyParser = require('body-parser');
-
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+require("./config/passport");
 
 var mongoose = require('mongoose');
 
@@ -29,7 +34,7 @@ var mongoose = require('mongoose');
 
 //module.exports = connection;
 
-// añado metodo a Date
+// añado metodos a Date++++++++++++++++++
 Date.prototype.addDays = function (days) {
   var dat = new Date(this.valueOf())
   dat.setDate(dat.getDate() + days);
@@ -39,7 +44,7 @@ Date.prototype.addDays = function (days) {
 Date.prototype.toLocalTime = function () {
       return new Date(this.getTime() - (this.getTimezoneOffset() * 60000));
 }
-
+//++++++++++++++++++++++++++++++++
 
 // routes 
 var usersRouter = require('./routes/users');
@@ -56,6 +61,19 @@ app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//passport 
+app.use(session({
+  secret: 'yevana',
+  resave: true,
+  saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
 
     if (!localStorage.getItem('user')) { return; }
      this.user = JSON.parse(localStorage.getItem('user'));
-     this.route.navigate(['mypage']);
+     this.route.navigate(['home']);
+     //this.route.navigate(['mypage']);
   }
 
 }
