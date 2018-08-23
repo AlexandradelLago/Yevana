@@ -11,27 +11,27 @@ export class VansService {
   baseURL = environment.baseURL;
   constructor(private http:Http) { }
 
-  getList() {
+  getList():Observable<any> {
     return this.http.get(`${this.baseURL}/van`)
       .map((res) => res.json());
   }
   
-  newVan(form) {
+  newVan(form):Observable<any> {
     return this.http.post(`${this.baseURL}/van`,form)
       .map((res) => res.json());
   }
   
-  getVan(id) {
+  getVan(id):Observable<any> {
     return this.http.get(`${this.baseURL}/van/${id}`)
       .map((res) => res.json());
   }
 
-  edit(van) {
+  edit(van):Observable<any> {
     return this.http.patch(`${this.baseURL}/van/${van.id}`, van)
       .map((res) => res.json());
   }
   
-  remove(id) {
+  remove(id):Observable<any> {
     return this.http.delete(`${this.baseURL}/van/${id}`)
       .map((res) => res.json());
   }

@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
+
 
 
 // Import angular2-fusioncharts
@@ -70,7 +72,8 @@ import { UserService } from './services/user.service';
     // You can pass all other FusionCharts modules such as Charts, PowerCharts
     // Maps, Widgets e.t.c. after FusionCharts
     FusionChartsModule.forRoot(FusionCharts, Charts,FintTheme,OceanTheme),
-    CalendarModule
+    CalendarModule,
+    AgGridModule.withComponents([])
   ],
   providers: [VansService,AuthService,BookingService,UserService],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BookingService} from '../services/booking.service';
+import {VansService} from '../services/vans.service';
 
 @Component({
   selector: 'app-bookings-list',
@@ -78,10 +80,41 @@ export class BookingsListComponent implements OnInit {
             "value": "330000"
         }
     ]
-	};
-  constructor() { }
+    };
+    bookingList:any[]=[];
+    title = 'app';
+    columnDefs = [
+        {headerName: 'Van', field: 'brand', checkboxSelection: true }
+    ];
+
+    rowData : any;
+        // { make: 'Toyota', model: 'Celica', price: 35000 },
+        // { make: 'Ford', model: 'Mondeo', price: 32000 },
+        // { make: 'Porsche', model: 'Boxter', price: 72000 }
+     
+    vanList:any[]=[];
+
+
+  constructor( private booking : BookingService, private van : VansService) { }
 
   ngOnInit() {
+
+      this.booking.getListBookings()
+        .subscribe((l)=>{
+            //console.log(new Date(b.startDate).getDay())
+            
+        });
+     this.van.getList()
+        .subscribe(van=>{
+            van.forEach(v =>{
+                console.log(v)
+                this.vanList.push({brand:v.brand})
+             // this.rowData= this.bookingList.startDate;
+            })
+            this.rowData=this.vanList;
+            console.log(this.rowData)
+             console.log(this.vanList)
+        });
   }
 
 }

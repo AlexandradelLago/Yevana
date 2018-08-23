@@ -6,6 +6,9 @@
  *
  * Made By MaterializeCSS.com
  */
+/* importando the grid styles*/
+@import "~ag-grid/dist/styles/ag-grid.css";
+@import "~ag-grid/dist/styles/ag-theme-balham.css";
 
 nav ul a,
 nav .brand-logo {

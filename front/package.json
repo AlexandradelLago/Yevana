@@ -23,6 +23,8 @@
     "@angular/router": "^5.2.0",
     "@types/jquery": "^3.3.5",
     "@types/underscore": "^1.8.8",
+    "ag-grid": "^18.1.2",
+    "ag-grid-angular": "^18.1.0",
     "angular2-fusioncharts": "^1.0.3",
     "angular2-materialize": "^15.1.10",
     "angular4-fusioncharts": "^1.0.0",

@@ -42,7 +42,7 @@ export class BookingComponent implements OnInit {
         console.log(this.vanId);
         this.vansService.getVan(params['id'])
                              .subscribe((van)=> {
-                               //console.log("este es mi van "+JSON.stringify(van._id));
+                               console.log("este es mi van "+JSON.stringify(van));
                                  this.van =van;
                                 this.savedVan=van;
                               })

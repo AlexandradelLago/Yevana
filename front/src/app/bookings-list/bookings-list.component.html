@@ -1,8 +1,14 @@
 <app-admin-nav></app-admin-nav>
 <section class="container fullpage">
-        <p>
-                bookings-list works!
-              </p>
+    <ag-grid-angular 
+    style="width: 500px; height: 200px;" 
+    class="ag-theme-balham"
+    [enableSorting]="true"
+    [enableFilter]="true"
+    [rowData]="rowData || async" 
+    [columnDefs]="columnDefs"
+    >
+</ag-grid-angular>
               
 
         <fusioncharts

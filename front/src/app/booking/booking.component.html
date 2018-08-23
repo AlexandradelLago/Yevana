@@ -10,7 +10,7 @@
   <button (click)="showDetails()">Details</button>
   <div   *ngIf="van" class="card col s6">
     <img class="circle responsive-img" src="assets/images/{{van.image}}" alt="image of van" >
-    <p>{{van.description.long}}</p>
+    <p>{{van.description.short||async}}</p>
     <p>{{van.name}}</p>
   </div>
 
@@ -41,7 +41,7 @@
     
           <div class="input-group" >
             <label for="booking-startDate">Pick the start date</label>
-            <p-calendar [inline]="true" [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
+            <p-calendar [inline]="false" [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
             [(ngModel)]="startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
              [readonlyInput]="true" ><p>{{startDate}}</p> </p-calendar>
 
