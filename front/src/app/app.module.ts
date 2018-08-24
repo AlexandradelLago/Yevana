@@ -46,6 +46,8 @@ import {VansService} from './services/vans.service';
 import {AuthService} from './services/auth.service';
 import { BookingService } from './services/booking.service';
 import { UserService } from './services/user.service';
+import { SeasonService } from './services/season.service';
+import { UtilsService } from './services/utils.service';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,7 @@ import { UserService } from './services/user.service';
     CalendarModule,
     AgGridModule.withComponents([])
   ],
-  providers: [VansService,AuthService,BookingService,UserService],
+  providers: [VansService,AuthService,BookingService,UserService,SeasonService,UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

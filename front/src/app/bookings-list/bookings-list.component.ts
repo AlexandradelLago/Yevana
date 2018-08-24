@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BookingService} from '../services/booking.service';
 import {VansService} from '../services/vans.service';
+import {UtilsService} from '../services/utils.service';
 
 @Component({
   selector: 'app-bookings-list',
@@ -81,6 +82,7 @@ export class BookingsListComponent implements OnInit {
         }
     ]
     };
+    // gridOptions:<GridOptions>
     bookingList:any[]=[];
     title = 'app';
     columnDefs = [
@@ -93,12 +95,15 @@ export class BookingsListComponent implements OnInit {
         // { make: 'Porsche', model: 'Boxter', price: 72000 }
      
     vanList:any[]=[];
+    headernames:String[]=['Van'];
+    day0:Date=new Date("January 1,18");
 
-
-  constructor( private booking : BookingService, private van : VansService) { }
+  constructor( private booking : BookingService, private van : VansService, private date: UtilsService) { }
 
   ngOnInit() {
 
+    this.headernames=[...this.headernames,...this.date.set365Date(this.day0,20)];
+      console.log(this.headernames);
       this.booking.getListBookings()
         .subscribe((l)=>{
             //console.log(new Date(b.startDate).getDay())
@@ -116,6 +121,10 @@ export class BookingsListComponent implements OnInit {
              console.log(this.vanList)
         });
   }
+ 
+
+
+
 
 }
 

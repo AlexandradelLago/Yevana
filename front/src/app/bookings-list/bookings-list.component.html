@@ -1,14 +1,22 @@
 <app-admin-nav></app-admin-nav>
 <section class="container fullpage">
-    <ag-grid-angular 
-    style="width: 500px; height: 200px;" 
-    class="ag-theme-balham"
-    [enableSorting]="true"
-    [enableFilter]="true"
-    [rowData]="rowData || async" 
+    <ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-theme-material"
+
+
+    [gridOptions]="gridOptions"
     [columnDefs]="columnDefs"
-    >
-</ag-grid-angular>
+    [showToolPanel]="showToolPanel"
+    [rowData]="rowData"
+
+
+    enableColResize
+    enableSorting
+    enableFilter
+
+ 
+
+    ></ag-grid-angular>
+
               
 
         <fusioncharts
