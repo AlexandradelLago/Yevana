@@ -85,9 +85,10 @@ export class BookingsListComponent implements OnInit {
     // gridOptions:<GridOptions>
     bookingList:any[]=[];
     title = 'app';
-    columnDefs = [
-        {headerName: 'Van', field: 'brand', checkboxSelection: true }
-    ];
+    columnDefs :any;
+    // columnDefs = [
+    //     {headerName: 'Van', field: 'brand', checkboxSelection: true }
+    // ];
 
     rowData : any;
         // { make: 'Toyota', model: 'Celica', price: 35000 },
@@ -95,15 +96,18 @@ export class BookingsListComponent implements OnInit {
         // { make: 'Porsche', model: 'Boxter', price: 72000 }
      
     vanList:any[]=[];
-    headernames:String[]=['Van'];
+    headernames:any[]=[ {headerName: 'Van', field: 'brand', checkboxSelection: true }];
     day0:Date=new Date("January 1,18");
 
   constructor( private booking : BookingService, private van : VansService, private date: UtilsService) { }
 
   ngOnInit() {
 
+  
+
     this.headernames=[...this.headernames,...this.date.set365Date(this.day0,20)];
       console.log(this.headernames);
+      this.columnDefs=this.headernames;
       this.booking.getListBookings()
         .subscribe((l)=>{
             //console.log(new Date(b.startDate).getDay())
@@ -123,8 +127,9 @@ export class BookingsListComponent implements OnInit {
   }
  
 
-
-
+  clearColumnsDef(){
+      this.columnDefs=[{headerName: 'Van', field: 'brand', checkboxSelection: true }];
+  }
 
 }
 

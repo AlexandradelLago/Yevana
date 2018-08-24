@@ -27,11 +27,12 @@ ArrayDates (start,totalDays){
 }
 
 set365Date (day1, numofDays){
-  var headers=[day1.toLocaleDateString()];
+  var headers=[];
+  let yesterday = day1;
   for (let i=0;i<=numofDays;i++){
-    console.log(`{ headerName: ${this.addDays(headers[headers.length-1],1).toLocaleDateString()}, field: ${this.addDays(headers[headers.length-1],1)} } `);
-      headers.push(this.addDays(headers[headers.length-1],1).toLocaleDateString());
-
+      let today = this.addDays(yesterday,1);
+      headers.push({ headerName: today.toLocaleDateString(), field: today.toLocaleDateString() } );
+      yesterday=today;
   }
 return headers;
 }
