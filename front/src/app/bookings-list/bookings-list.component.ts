@@ -90,42 +90,85 @@ export class BookingsListComponent implements OnInit {
     //     {headerName: 'Van', field: 'brand', checkboxSelection: true }
     // ];
 
-    rowData : any;
-        // { make: 'Toyota', model: 'Celica', price: 35000 },
-        // { make: 'Ford', model: 'Mondeo', price: 32000 },
-        // { make: 'Porsche', model: 'Boxter', price: 72000 }
-     
+    // rowData = [
+    //     { brand: 'Coche1', "8/2/2018": 'idReserva1',  "8/22/2018": 'idReserva1',  "8/17/2018": 'idReserva1'  },
+    //     { brand: 'Coche2', "8/5/2018": 'idReserva1',  "8/23/2018": 'idReserva1',  "8/20/2018": 'idReserva1' }
+    // ]
+    rowData:any=[];
+     row:any=[];
+     arrayAux:any[]=[];
+     rowDataAux:any[]=[];
     vanList:any[]=[];
     headernames:any[]=[ {headerName: 'Van', field: 'brand', checkboxSelection: true }];
-    day0:Date=new Date("January 1,18");
+    day0:Date=new Date("August 5,18");
 
   constructor( private booking : BookingService, private van : VansService, private date: UtilsService) { }
 
   ngOnInit() {
 
-  
+  console.log(this.rowData)
 
     this.headernames=[...this.headernames,...this.date.set365Date(this.day0,20)];
       console.log(this.headernames);
       this.columnDefs=this.headernames;
-      this.booking.getListBookings()
-        .subscribe((l)=>{
-            //console.log(new Date(b.startDate).getDay())
-            
-        });
-     this.van.getList()
-        .subscribe(van=>{
-            van.forEach(v =>{
-                console.log(v)
-                this.vanList.push({brand:v.brand})
-             // this.rowData= this.bookingList.startDate;
-            })
-            this.rowData=this.vanList;
-            console.log(this.rowData)
-             console.log(this.vanList)
-        });
+    
+      this.van.getList()
+      .subscribe(van=>{
+          van.forEach(v =>{
+             // this.vanRow.push({brand:v.brand})
+              this.booking.getListBookingsByVan(v._id)
+              .subscribe(items=>{
+                //  console.log("este es mi row brand")
+                  this.row={};
+                  this.row['brand']=v.brand;
+                 // this.rowData=this.row;
+                //  console.log(this.row);
+                            items.forEach(b=>{
+                              this.arrayAux = this.date.ArrayDates(b.startDate,b.total)
+                              this.arrayAux.forEach(day=>{
+                                  this.row[day.toLocaleDateString()]=b._id;
+                              })
+                            });
+                            console.log(this.row)
+                            
+                            this.rowDataAux.push(this.row);
+                            console.log("este es el rowData")
+                            console.log(this.rowData)
+                          
+                            console.log("este otra vez row data de verdaddddd")
+                            this.rowData=this.rowDataAux;
+
+                            
+              })
+          })
+         
+      });
+
+
+
+    //   this.van.getList()
+    //   .subscribe(van=>{
+    //       van.forEach(v =>{
+    //           console.log(v)
+    //           this.vanList.push({brand:v.brand})
+    //        // this.rowData= this.bookingList.startDate;
+    //       })
+    //        this.rowData=this.vanList;
+    //       console.log(this.rowData)
+    //        console.log(this.vanList)
+    //   });
+
+
+
   }
  
+
+
+
+
+
+
+
 
   clearColumnsDef(){
       this.columnDefs=[{headerName: 'Van', field: 'brand', checkboxSelection: true }];

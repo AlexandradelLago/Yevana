@@ -21,6 +21,7 @@ export class BookingService {
   getListBookingsByVan(_van):Observable<any> {
     return this.http.get(`${this.baseURL}/booking/van/${_van}`)
       .map((res) => res.json());
+      
   }
   
   newBooking(values):Observable<any> {

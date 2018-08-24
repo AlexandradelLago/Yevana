@@ -46,6 +46,7 @@ export class BookingComponent implements OnInit {
                                  this.van =van;
                                 this.savedVan=van;
                               })
+                              
        this.bookingService.getListBookingsByVan(params['id'])
                             .subscribe((bookingList)=>{
                               this.bookingList=bookingList;
