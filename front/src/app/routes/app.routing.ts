@@ -9,6 +9,7 @@ import {DashboardComponent} from '../dashboard/dashboard.component'
 import {SeasonComponent} from '../season/season.component';
 import {BookingsListComponent} from '../bookings-list/bookings-list.component';
 import {ClientComponent} from '../client/client.component';
+import {UsersComponent} from '../users/users.component';
 
 export const routes:Routes = [
     {path:"", component:HomeComponent},
@@ -18,6 +19,7 @@ export const routes:Routes = [
     {path:"alquiler/:id/client" , component:ClientComponent},
     {path:"admin", component:DashboardComponent},
     {path:"admin/bookings", component:BookingsListComponent},
-    {path:"admin/season", component:SeasonComponent}
+    {path:"admin/season", component:SeasonComponent},
+    {path:"admin/users", component:UsersComponent}
 ]
 

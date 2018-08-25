@@ -101,7 +101,7 @@ export class BookingsListComponent implements OnInit {
      rowDataAux:any[]=[];
     vanList:any[]=[];
     headernames:any[]=[ {headerName: 'Van', field: 'brand', checkboxSelection: true }];
-    day0:Date=new Date("August 5,18");
+    day0:Date=new Date("August 1,18");
 
   constructor( private booking : BookingService, private van : VansService, private date: UtilsService) { }
 
@@ -109,41 +109,35 @@ export class BookingsListComponent implements OnInit {
 
   console.log(this.rowData)
 
-    this.headernames=[...this.headernames,...this.date.set365Date(this.day0,20)];
+    this.headernames=[...this.headernames,...this.date.set365Date(this.day0,30)];
       console.log(this.headernames);
       this.columnDefs=this.headernames;
     
       this.van.getList()
       .subscribe(van=>{
-          van.forEach(v =>{
+          van.forEach(v=>{
              // this.vanRow.push({brand:v.brand})
               this.booking.getListBookingsByVan(v._id)
               .subscribe(items=>{
-                //  console.log("este es mi row brand")
                   this.row={};
                   this.row['brand']=v.brand;
-                 // this.rowData=this.row;
-                //  console.log(this.row);
+               
                             items.forEach(b=>{
                               this.arrayAux = this.date.ArrayDates(b.startDate,b.total)
                               this.arrayAux.forEach(day=>{
                                   this.row[day.toLocaleDateString()]=b._id;
                               })
-                            });
-                            console.log(this.row)
-                            
-                            this.rowDataAux.push(this.row);
-                            console.log("este es el rowData")
-                            console.log(this.rowData)
                           
-                            console.log("este otra vez row data de verdaddddd")
-                            this.rowData=this.rowDataAux;
 
-                            
+                            });      
+                            this.rowDataAux.push(this.row);   
+                            this.rowData=this.rowDataAux;   
+                            console.log(this.rowData)  
               })
+              
           })
-         
-      });
+             
+    });
 
 
 

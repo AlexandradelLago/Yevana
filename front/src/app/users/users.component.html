@@ -1,0 +1,54 @@
+<app-admin-nav></app-admin-nav>
+
+<section class="container">
+  <div class="fullpage">
+      <p>
+          My list of clients!
+        </p>
+
+  </div>
+  
+  <ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-theme-material"
+
+
+  [gridOptions]="gridOptions"
+  [columnDefs]="columnDefs"
+  [showToolPanel]="showToolPanel"
+  [rowData]="rowData"
+
+
+  enableColResize
+  enableSorting
+  enableFilter
+  groupHeaders
+  suppressRowClickSelection
+  toolPanelSuppressGroups
+  toolPanelSuppressValues
+  rowHeight="50"
+  rowSelection="multiple"
+
+
+                     (cellClicked)="onCellClicked($event)"
+                     (cellDoubleClicked)="onCellDoubleClicked($event)"
+                     (cellContextMenu)="onCellContextMenu($event)"
+                     (cellValueChanged)="onCellValueChanged($event)"
+                
+                     (rowSelected)="onRowSelected($event)"
+                     (selectionChanged)="onSelectionChanged()"
+                     (beforeFilterChanged)="onBeforeFilterChanged()"
+                     (afterFilterChanged)="onAfterFilterChanged()"
+                     (filterModified)="onFilterModified()"
+                     (beforeSortChanged)="onBeforeSortChanged()"
+                     (afterSortChanged)="onAfterSortChanged()"
+                     (virtualRowRemoved)="onVirtualRowRemoved($event)"
+                     (rowClicked)="onRowClicked($event)"
+                     (gridReady)="onReady($event)"
+
+
+  ></ag-grid-angular>
+
+
+
+
+
+</section>

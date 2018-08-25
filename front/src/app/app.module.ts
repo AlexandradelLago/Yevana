@@ -40,6 +40,7 @@ import { SeasonComponent } from './season/season.component';
 import { BookingsListComponent } from './bookings-list/bookings-list.component';
 import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UsersComponent } from './users/users.component';
 
 // services
 import {VansService} from './services/vans.service';
@@ -48,6 +49,7 @@ import { BookingService } from './services/booking.service';
 import { UserService } from './services/user.service';
 import { SeasonService } from './services/season.service';
 import { UtilsService } from './services/utils.service';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { UtilsService } from './services/utils.service';
     SeasonComponent,
     BookingsListComponent,
     ClientComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
