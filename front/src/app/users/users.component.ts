@@ -11,7 +11,7 @@ import {GridOptions} from "ag-grid/main";
 })
 export class UsersComponent implements OnInit {
  
-    
+    name;email;
     public rowCount:string;
     private gridOptions:GridOptions;
     public showGrid:boolean;
@@ -103,12 +103,19 @@ private onAfterSortChanged() {
     console.log('onAfterSortChanged');
 }
 
-private onRowClicked($event) {
+private onRowClicked($event,myFormClient) {
     console.log('onRowClicked: ' + $event.node.data.name);
+    console.log(myFormClient)
+
+  $("#email").text("your tip has been submitted!");
+
+    this.name=$event.node.data.name;
+    this.email=$event.node.data.email;
 }
 
 public onQuickFilterChanged($event) {
     this.gridOptions.api.setQuickFilter($event.target.value);
+   
 }
 
 }
