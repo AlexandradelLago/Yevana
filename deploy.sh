@@ -1,7 +1,7 @@
 cd front
 rm -rf dist
 echo 'Building front...'
-ng build --env --aot=false
+ng build --prod --aot
 cd ..
 echo "Copy files to public..."
 rm -rf ./back/public

@@ -82,7 +82,8 @@ export class BookingsListComponent implements OnInit {
         }
     ]
     };
-    // gridOptions:<GridOptions>
+    gridOptions; 
+    showToolPanel;
     bookingList:any[]=[];
     title = 'app';
     columnDefs :any;

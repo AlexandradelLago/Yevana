@@ -12,6 +12,8 @@ import {UserService} from '../services/user.service';
 export class ClientComponent implements OnInit {
 
   booking:{_van,startDate,endDate,price,_id,paid,total,_user};
+  email;password;name;
+
 
 
   constructor(private router : Router, private route: ActivatedRoute, 
