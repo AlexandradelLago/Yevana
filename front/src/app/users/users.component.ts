@@ -13,7 +13,7 @@ export class UsersComponent implements OnInit {
  
     name;email;
     public rowCount:string;
-    private gridOptions:GridOptions;
+    public gridOptions:GridOptions;
     public showGrid:boolean;
    
     columnDefs = [
@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
  
 
 
-private createRowData(){
+createRowData(){
     this.user.getList()
     .subscribe(u=>{
         u.forEach(item=>{
@@ -65,7 +65,7 @@ private createRowData(){
   
 }
 
-private calculateRowCount() {
+ calculateRowCount() {
     if (this.gridOptions.api && this.rowData) {
         var model = this.gridOptions.api.getModel();
         var totalRows = this.rowData.length;
@@ -74,36 +74,36 @@ private calculateRowCount() {
     }
 }
 
-public onReady() {
+public onReady($event) {
     console.log('onReady');
     this.calculateRowCount();
 }
 
-private onSelectionChanged() {
+ onSelectionChanged() {
     console.log('selectionChanged');
 }
 
-private onBeforeFilterChanged() {
+ onBeforeFilterChanged() {
     console.log('beforeFilterChanged');
 }
 
-private onAfterFilterChanged() {
+ onAfterFilterChanged() {
     console.log('afterFilterChanged');
 }
 
-private onFilterModified() {
+ onFilterModified() {
     console.log('onFilterModified');
 }
 
-private onBeforeSortChanged() {
+ onBeforeSortChanged() {
     console.log('onBeforeSortChanged');
 }
 
-private onAfterSortChanged() {
+ onAfterSortChanged() {
     console.log('onAfterSortChanged');
 }
 
-private onRowClicked($event,myFormClient) {
+ onRowClicked($event,myFormClient) {
     console.log('onRowClicked: ' + $event.node.data.name);
     console.log(myFormClient)
 
@@ -113,7 +113,18 @@ private onRowClicked($event,myFormClient) {
     this.email=$event.node.data.email;
 }
 
-public onQuickFilterChanged($event) {
+
+onCellDoubleClicked($event) {
+    console.log('onRowClicked: ' + $event.node.data.name);
+   
+
+  $("#email").text("your tip has been submitted!");
+
+    this.name=$event.node.data.name;
+    this.email=$event.node.data.email;
+}
+
+ onQuickFilterChanged($event) {
     this.gridOptions.api.setQuickFilter($event.target.value);
    
 }

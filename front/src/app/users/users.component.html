@@ -13,7 +13,7 @@
 
   [gridOptions]="gridOptions"
   [columnDefs]="columnDefs"
-  [showToolPanel]="showToolPanel"
+
   [rowData]="rowData"
 
 
@@ -28,19 +28,14 @@
   rowSelection="multiple"
 
 
-                     (cellClicked)="onCellClicked($event)"
+                    
                      (cellDoubleClicked)="onCellDoubleClicked($event)"
-                     (cellContextMenu)="onCellContextMenu($event)"
-                     (cellValueChanged)="onCellValueChanged($event)"
-                
-                     (rowSelected)="onRowSelected($event)"
                      (selectionChanged)="onSelectionChanged()"
                      (beforeFilterChanged)="onBeforeFilterChanged()"
                      (afterFilterChanged)="onAfterFilterChanged()"
                      (filterModified)="onFilterModified()"
                      (beforeSortChanged)="onBeforeSortChanged()"
                      (afterSortChanged)="onAfterSortChanged()"
-                     (virtualRowRemoved)="onVirtualRowRemoved($event)"
                      (rowClicked)="onRowClicked($event,myFormClient)"
                      (gridReady)="onReady($event)"
 
