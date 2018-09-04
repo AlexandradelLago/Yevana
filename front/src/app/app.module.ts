@@ -49,6 +49,8 @@ import { BookingService } from './services/booking.service';
 import { UserService } from './services/user.service';
 import { SeasonService } from './services/season.service';
 import { UtilsService } from './services/utils.service';
+import { HomeNavBarComponent } from './home-nav-bar/home-nav-bar.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { UtilsService } from './services/utils.service';
     BookingsListComponent,
     ClientComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    HomeNavBarComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

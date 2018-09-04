@@ -19,4 +19,3 @@ router.get('/loggedin', controller.loggedin);
 
 module.exports = router;
 
-

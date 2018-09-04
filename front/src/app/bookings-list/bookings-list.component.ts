@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {BookingService} from '../services/booking.service';
 import {VansService} from '../services/vans.service';
 import {UtilsService} from '../services/utils.service';
-
+import {GridOptions} from "ag-grid/main";
 @Component({
   selector: 'app-bookings-list',
   templateUrl: './bookings-list.component.html',
   styleUrls: ['./bookings-list.component.css']
 })
 export class BookingsListComponent implements OnInit {
+
+    startDate;email;name;vanName;endDate;total;price;
+    rowCount:string;
   width1 = 600;
   height1 = 400;
   type1 = 'pie3d';
@@ -54,35 +57,31 @@ export class BookingsListComponent implements OnInit {
     dataFormat2 = 'json';
     dataSource2 = {
     "chart": {
-        "caption": "Harry's SuperMart",
-        "subCaption": "Top 5 stores in last month by revenue",
+        "caption": "Revenues's per month",
+        "subCaption": "Revenue per month and per van in the last 5 months",
         "numberPrefix": "$",
         "theme": "fint"
     },
     "data": [
         {
-            "label": "Bakersfield Central",
+            "label": "June",
             "value": "880000"
         },
         {
-            "label": "Garden Groove harbour",
+            "label": "July",
             "value": "730000"
         },
         {
-            "label": "Los Angeles Topanga",
+            "label": "August",
             "value": "590000"
         },
         {
-            "label": "Compton-Rancho Dom",
+            "label": "September",
             "value": "520000"
-        },
-        {
-            "label": "Daly City Serramonte",
-            "value": "330000"
         }
     ]
     };
-    gridOptions; 
+    public gridOptions:GridOptions;
     showToolPanel;
     bookingList:any[]=[];
     title = 'app';
@@ -103,7 +102,9 @@ export class BookingsListComponent implements OnInit {
     headernames:any[]=[ {headerName: 'Van', field: 'brand', checkboxSelection: true }];
     day0:Date=new Date("August 1,18");
 
-  constructor( private booking : BookingService, private van : VansService, private date: UtilsService) { }
+  constructor( private booking : BookingService, private van : VansService, private date: UtilsService) {
+    this.gridOptions = <GridOptions>{};
+   }
 
   ngOnInit() {
 
@@ -114,21 +115,20 @@ export class BookingsListComponent implements OnInit {
       this.columnDefs=this.headernames;
     
       this.van.getList()
-      .subscribe(van=>{
-          van.forEach(v=>{
-             // this.vanRow.push({brand:v.brand})
-              this.booking.getListBookingsByVan(v._id)
-              .subscribe(items=>{
+      .subscribe(vans=>{
+        this.booking.getListBookings()
+        .subscribe(bookings=>{
+          vans.forEach(v=>{
                   this.row={};
                   this.row['brand']=v.brand;
                
-                            items.forEach(b=>{
-                              this.arrayAux = this.date.ArrayDates(b.startDate,b.total)
-                              this.arrayAux.forEach(day=>{
-                                  this.row[day.toLocaleDateString()]=b._id;
-                              })
-                          
-
+                            bookings.forEach(b=>{
+                              if (v._id === b._van._id){
+                                this.arrayAux = this.date.ArrayDates(b.startDate,b.total)
+                                this.arrayAux.forEach(day=>{
+                                    this.row[day.toLocaleDateString()]=b._id;
+                                })
+                              }
                             });      
                             this.rowDataAux.push(this.row);   
                             this.rowData=this.rowDataAux;   
@@ -140,27 +140,83 @@ export class BookingsListComponent implements OnInit {
     });
 
 
-
-    //   this.van.getList()
-    //   .subscribe(van=>{
-    //       van.forEach(v =>{
-    //           console.log(v)
-    //           this.vanList.push({brand:v.brand})
-    //        // this.rowData= this.bookingList.startDate;
-    //       })
-    //        this.rowData=this.vanList;
-    //       console.log(this.rowData)
-    //        console.log(this.vanList)
-    //   });
-
-
-
   }
  
 
 
 
+  calculateRowCount() {
+    if (this.gridOptions.api && this.rowData) {
+        var model = this.gridOptions.api.getModel();
+        var totalRows = this.rowData.length;
+        var processedRows = model.getRowCount();
+        this.rowCount = processedRows.toLocaleString() + ' / ' + totalRows.toLocaleString();
+    }
+}
 
+public onReady() {
+    console.log('onReady');
+    this.calculateRowCount();
+}
+
+ onSelectionChanged() {
+    console.log('selectionChanged');
+}
+
+ onBeforeFilterChanged() {
+    console.log('beforeFilterChanged');
+}
+
+ onAfterFilterChanged() {
+    console.log('afterFilterChanged');
+}
+
+ onFilterModified() {
+    console.log('onFilterModified');
+}
+
+ onBeforeSortChanged() {
+    console.log('onBeforeSortChanged');
+}
+
+ onAfterSortChanged() {
+    console.log('onAfterSortChanged');
+}
+
+ onRowClicked($event,myFormClient) {
+    console.log('onRowClicked: ' + $event.node.data.name);
+    console.log(myFormClient)
+
+  $("#startDate").text("your tip has been submitted!");
+
+    this.name=$event.node.data.name;
+    this.startDate=$event.node.data.startDate;
+}
+
+
+onCellClicked($event) {
+    console.log("cell clicked")
+    console.log($event.value);
+
+    this.booking.getBooking($event.value)
+    .subscribe(b=>{
+        console.log(b);
+        this.name = b._user.name;
+        this.email=b._user.email;
+        this.vanName = b._van.brand;
+        this.startDate=new Date (b.startDate);
+        this.endDate=b.endDate;
+        this.total=b.total;
+        this.price=b.price
+
+    })
+   
+}
+
+ onQuickFilterChanged($event) {
+    this.gridOptions.api.setQuickFilter($event.target.value);
+   
+}
 
 
 

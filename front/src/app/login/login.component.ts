@@ -9,29 +9,29 @@ import * as $ from 'jquery';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  newUser = {email: '', password: '', username:''};
+  logingUser = {password: '', username:''};
   user;
 
   constructor(private session: AuthService, private route: Router) { }
 
   login() {
-    this.session.login(this.newUser)
+    this.session.login(this.logingUser)
     .subscribe(data => {
       this.user = data;
       localStorage.setItem('user', JSON.stringify(data));
       switch (this.user.role) {
         case 'USER':
-          this.route.navigate(['home']);
+          this.route.navigate(['']);
         break;
         case 'ADMIN':
-          this.route.navigate(['dashboard']);
+          this.route.navigate(['admin']);
         break;
-        // case 'COLABORATOR':
-        //   this.route.navigate(['new']);
-        // break;
       }
     });
   }
+
+
+
 
   ngOnInit() {
     // $(document).ready(function() {

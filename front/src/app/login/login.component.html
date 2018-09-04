@@ -1,20 +1,24 @@
-<app-nav-bar></app-nav-bar>
+<app-home-nav-bar></app-home-nav-bar>
 <div class="parallax-container">
   <div class="parallax"><img src="../assets/images/background1.jpg"></div>
-  <h1>Yevana<img id="logo" src="../assets/images/background2.jpg" alt="Logo">ve</h1>
-  <div class="form-container">
-      <form class="col s12">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">email</i>
-          <input [(ngModel)]="newUser.email" name="email" id="icon_prefix" type="email" class="validate">
-          <label for="icon_prefix" >Email</label>
+  <h1>Yevana<img id="logo" src="../assets/images/background2.jpg" alt="Logo">Log in with your account</h1>
+  <div class="container">
+      <form class="form-container amber lighten-4  col s6">
+        <div class="input-field col s6 input-center">
+          <i class="material-icons prefix">account_circle</i>
+          <input [(ngModel)]="logingUser.username" name="username" id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix" >Username</label>
         </div>
         <div class="input-field col s6">
           <i class="material-icons prefix">lock</i>
-          <input [(ngModel)]="newUser.password" name="password" id="icon_telephone" type="password" class="validate" >
+          <input [(ngModel)]="logingUser.password" name="password" id="icon_telephone" type="password" class="validate" >
           <label for="icon_telephone">Password</label>
         </div>
         <button (click)="login()" class="btn waves-effect waves-light" type="submit" name="action">Login</button>
       </form>
+      <p>No account yet? <a [routerLink]="['/signup']"> Signup?</a>  </p>
+      <p class="error"> {{ error }} </p>
       </div>
 </div>
+
+

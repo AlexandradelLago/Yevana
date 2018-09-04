@@ -1,42 +1,71 @@
 <app-admin-nav></app-admin-nav>
 <section class="container fullpage">
 
-    <button (click)="clearColumnsDef()" > CLEAR HEADERS</button>
+    <button (click)="clearColumnsDef()"> CLEAR HEADERS</button>
 
-    <ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-theme-material"
+    <ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-theme-material" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
+        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+        toolPanelSuppressValues rowHeight="50" rowSelection="multiple" (cellClicked)="onCellClicked($event)" (selectionChanged)="onSelectionChanged()"
+        (beforeFilterChanged)="onBeforeFilterChanged()" (afterFilterChanged)="onAfterFilterChanged()" (filterModified)="onFilterModified()"
+        (beforeSortChanged)="onBeforeSortChanged()" (afterSortChanged)="onAfterSortChanged()" (rowClicked)="onRowClicked($event,myFormClient)"
+        (gridReady)="onReady()"></ag-grid-angular>
 
 
-    [gridOptions]="gridOptions"
-    [columnDefs]="columnDefs"
-    [showToolPanel]="showToolPanel"
-    [rowData]="rowData"
+    <form class="form " #myFormClient="ngForm">
+<div class="column">
+    <div class="row">
+        <div class="input-field col s9">
+           User Name: <input [(ngModel)]="name" value="Alvin" id="name" type="text" class="validate" name="name">
+           
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="input-field col s9">
+           Email: <input [(ngModel)]="email" value="Alvin" id="name" type="text" class="validate" name="email">
+           
+        </div>
+    </div>
 
-    enableColResize
-    enableSorting
-    enableFilter
-
- 
-
-    ></ag-grid-angular>
-
-              
-
-        <fusioncharts
-        [width]="width1"
-        [height]="height1"
-        [type]="type1"
-        [dataFormat]="dataFormat1"
-        [dataSource]="dataSource1">
-    </fusioncharts>
+</div>
+     
+        <div class="column">
+            <div class="row">
+                <div class="input-field col s9">
+                    <input [(ngModel)]="startDate" id="startDate" type="text" class="validate" name="startDate">
+                    <label class="active" for="startDate">Start Date</label>
+                </div>
+            </div>
     
-    <fusioncharts
-        [width]="width2"
-        [height]="height2"
-        [type]="type2"
-        [dataFormat]="dataFormat2"
-        [dataSource]="dataSource2">
+            <div class="row">
+                <div class="input-field col s9">
+                    <input [(ngModel)]="endDate" id="endDate" type="text" class="validate" name="endDate">
+                    <label class="active" for="endDate">End Date</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s9">
+                   Price: <input [(ngModel)]="price" value="Alvin" id="price" type="text" class="validate" name="price">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s9">
+                    <input [(ngModel)]="total" id="total" type="text" class="validate" name="total">
+                    <label class="active" for="startDate">Total of days </label>
+                </div>
+            </div>
+
+
+
+
+        </div>
+       
+    </form>
+
+    <fusioncharts [width]="width1" [height]="height1" [type]="type1" [dataFormat]="dataFormat1" [dataSource]="dataSource1">
+    </fusioncharts>
+
+    <fusioncharts [width]="width2" [height]="height2" [type]="type2" [dataFormat]="dataFormat2" [dataSource]="dataSource2">
     </fusioncharts>
 </section>
-
-

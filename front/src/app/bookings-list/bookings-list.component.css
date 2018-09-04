@@ -1,0 +1,18 @@
+
+.form{
+    display:flex;
+    flex-flow:row;
+ 
+   justify-content: space-between;
+
+   text-align: center;
+   
+   border: 1ex solid darkcyan;
+}
+.column{
+   
+    width:50%;
+}
+.input{
+ width:100%;
+}

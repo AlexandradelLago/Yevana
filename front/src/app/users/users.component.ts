@@ -74,7 +74,7 @@ createRowData(){
     }
 }
 
-public onReady($event) {
+public onReady() {
     console.log('onReady');
     this.calculateRowCount();
 }

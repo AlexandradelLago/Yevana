@@ -10,10 +10,11 @@ import {SeasonComponent} from '../season/season.component';
 import {BookingsListComponent} from '../bookings-list/bookings-list.component';
 import {ClientComponent} from '../client/client.component';
 import {UsersComponent} from '../users/users.component';
-
+import {SignupComponent} from '../signup/signup.component';
 export const routes:Routes = [
     {path:"", component:HomeComponent},
     {path:"login", component:LoginComponent},
+    {path:"signup", component:SignupComponent},
     {path:"alquiler" , component:ListComponent},
     {path:"alquiler/:id" , component:BookingComponent},
     {path:"alquiler/:id/client" , component:ClientComponent},

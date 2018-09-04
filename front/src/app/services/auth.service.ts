@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   options = {withCredentials: true};
   constructor(private http: Http) { }
-  baseURL = environment.baseURL + 'auth';
+  baseURL = environment.baseURL;
 
   
   handleError(e) {

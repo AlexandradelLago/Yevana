@@ -8,31 +8,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-const expressLayouts     = require('express-ejs-layouts');
 // passport 
 const bodyParser = require('body-parser');
 const session = require("express-session");
-const bcrypt = require("bcrypt");
+
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 require("./config/passport");
 
 var mongoose = require('mongoose');
-
-// var connection = mongoose.connect('mongodb://admin:admin1@ds263571.mlab.com:63571/yevana')
-//     .then(console.log("Connected to DB!!"));
-
-// // utilizando variable de entorno y localhost 3000
-// mongoose.connect(process.env.LOCAL)
-// .then(console.log(`connected to ${process.env.LOCAL}`));
-
-   mongoose.connect(process.env.MONGODB_URL)
-  .then(console.log(`connected to ${process.env.MONGODB_URL}`));
-
-
-
-
-//module.exports = connection;
 
 // añado metodos a Date++++++++++++++++++
 Date.prototype.addDays = function (days) {
@@ -56,7 +39,18 @@ const seasonsRouter = require('./routes/seasons');
 var app = express();
 
 // cors para la integracion con el front que va a ir en otro puerto, no 3000 si no 4200
-app.use(cors());
+const corsOptions= {
+  origin:true,
+  credentials:true
+}
+app.use(cors(corsOptions));
+
+mongoose.connect(process.env.MONGODB_URL)
+.then(console.log(`connected to ${process.env.MONGODB_URL}`)) 
+.catch((err) => {
+  console.log("Not Connected to Database ERROR! ", err);
+ });
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
