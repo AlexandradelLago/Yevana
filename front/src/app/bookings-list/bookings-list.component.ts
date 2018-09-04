@@ -48,9 +48,7 @@ export class BookingsListComponent implements OnInit {
           "value": "491000"
       }
   ]
-};
-
-
+}
   width2 = 600;
     height2 = 400;
     type2 = 'column2d';

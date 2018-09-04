@@ -31,13 +31,20 @@ set365Date (day1, numofDays){
   let yesterday = day1;
   for (let i=0;i<=numofDays;i++){
       let today = this.addDays(yesterday,1);
-      headers.push({ headerName: today.toLocaleDateString(), field: today.toLocaleDateString() } );
+      headers.push({ headerName: today.toLocaleDateString(), field: today.toLocaleDateString(), cellRenderer:bookingCellRenderer} );
       yesterday=today;
   }
 return headers;
 }
 
 
+}
 
 
+
+function bookingCellRenderer(params) {
+  console.log(params.value)
+  var booked = "free";
+  if (params.value) var booked = "<div style='background:blue; height:30px; margin:0px  30px; border: 2px solid red; border-radius: 25px width:100%'> </div>";
+  return booked;
 }
