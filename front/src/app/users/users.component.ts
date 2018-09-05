@@ -17,10 +17,11 @@ export class UsersComponent implements OnInit {
     public showGrid:boolean;
    
     columnDefs = [
-        {headerName: 'Name', field: 'name', checkboxSelection: true },
-        {headerName: 'Email', field: 'email', checkboxSelection: true },
-        {headerName: 'Username', field: 'username', checkboxSelection: true },
-        {headerName: 'Role', field: 'role', checkboxSelection: true }
+        {headerName: 'Name', field: 'name' , cellStyle: {color: 'white', 'background-color': 'teal'},
+        {headerName: 'Email', field: 'email' },
+        {headerName: 'Username', field: 'username' },
+        {headerName: 'Role', field: 'role'}
+        //, checkboxSelection: true }
     ];
     rowData:any[]=[];
     userRow={};
@@ -31,21 +32,29 @@ export class UsersComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.createRowData();
     this.showGrid = true;
-
+this.drawCells();
 
   }
   ngOnInit() {
 
 
 
-
-
-
-
-
   }
  
-
+  drawCells(){
+    // set background color on every row
+ // this is probably bad, should be using CSS classes
+ this.gridOptions.rowStyle = {background: 'paleTurquoise',padding:'0 0'};
+ 
+ // // set background color on odd rows
+ // // again, this looks bad, should be using CSS classes
+  this.gridOptions.getRowStyle = function(params) {
+ console.log(params)
+     if (params.node.rowIndex % 2 === 0) {
+         return { background: 'lightCyan'}
+     }
+  } 
+ }
 
 createRowData(){
     this.user.getList()

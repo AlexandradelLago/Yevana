@@ -17,7 +17,7 @@
   [rowData]="rowData"
 
 
-  enableColResize
+  enableColResize=false;
   enableSorting
   enableFilter
   groupHeaders
@@ -25,7 +25,7 @@
   toolPanelSuppressGroups
   toolPanelSuppressValues
   rowHeight="50"
-  rowSelection="multiple"
+ 
 
 
                     
@@ -45,8 +45,8 @@
  
 
   <form  class="form "  #myFormClient="ngForm" >
-    
-     <div class="row">
+  <div class="column">
+    <div class="row">
       <div class="input-field col s6">
         <input  [(ngModel)]="name" value="Alvin" id="first_name2" type="text" class="validate" name="first_name2">
         <label class="active" for="first_name2">First Name</label>
@@ -58,32 +58,28 @@
           <label class="active" for="email">Email</label>
         </div>
       </div>
-      <p>
-        <label>
-          <input type="checkbox" class="filled-in" checked="checked" />
-          <span>Filled in</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input id="indeterminate-checkbox" type="checkbox" />
-          <span>Indeterminate Style</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" checked="checked" disabled="disabled" />
-          <span>Green</span>
-        </label>
-      </p>
-      <p>
-        <label>
-          <input type="checkbox" disabled="disabled" />
-          <span>Brown</span>
-        </label>
-      </p>
+
+  </div>
+ 
+<div class="column">
+  <div class="row">
+    <div class="input-field col s6">
+      <input  [(ngModel)]="name" value="Alvin" id="first_name2" type="text" class="validate" name="first_name2">
+      <label class="active" for="first_name2">First Name</label>
+    </div>
+  </div>
+  <div class="row">
+      <div class="input-field col s6">
+        <input  [(ngModel)]="email"  id="email" type="text" class="validate" name="email">
+        <label class="active" for="email">Email</label>
+      </div>
+    </div>
+
+</div>
+    
+     
     </form>
-          
+      
 
 
 </section>

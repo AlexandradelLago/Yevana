@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
     //   ($('.parallax') as any).parallax();
     // });
 
-    if (!localStorage.getItem('user')) { return; }
-     this.user = JSON.parse(localStorage.getItem('user'));
-     this.route.navigate(['']);
-     //this.route.navigate(['mypage']);
+    // if (!localStorage.getItem('user')) { return; }
+    //  this.user = JSON.parse(localStorage.getItem('user'));
+    //  this.route.navigate(['']);
+    //  //this.route.navigate(['mypage']);
   }
 
 }

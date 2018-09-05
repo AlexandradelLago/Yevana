@@ -1,0 +1,10 @@
+.ag-cell-label-container{
+    /*Necessary to allow for text to grow vertically*/
+    background-color: brown;
+}
+
+.form{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
