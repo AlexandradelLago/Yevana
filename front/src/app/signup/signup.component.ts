@@ -10,7 +10,7 @@ import * as $ from 'jquery';
 })
 export class SignupComponent implements OnInit {
   newUser = {email: '', password: '', username:''};
-  user;
+  user;error;
   constructor(private session: AuthService, private route: Router) { }
 
   signup() {

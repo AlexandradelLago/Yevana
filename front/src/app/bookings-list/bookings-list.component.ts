@@ -152,9 +152,25 @@ export class BookingsListComponent implements OnInit {
     }
 }
 
+drawCells(){
+   // set background color on every row
+// this is probably bad, should be using CSS classes
+this.gridOptions.rowStyle = {background: 'paleTurquoise',padding:'0 0'};
+
+// // set background color on odd rows
+// // again, this looks bad, should be using CSS classes
+ this.gridOptions.getRowStyle = function(params) {
+console.log(params)
+    if (params.node.rowIndex % 2 === 0) {
+        return { background: 'lightCyan'}
+    }
+ } 
+}
+
 public onReady() {
     console.log('onReady');
     this.calculateRowCount();
+    this.drawCells();
    // params.api.sizeColumnsToFit();
   
 
@@ -196,8 +212,8 @@ public onReady() {
 
 
 onCellClicked($event) {
-    console.log("cell clicked")
-    console.log($event.value);
+  //  console.log("cell clicked")
+   // console.log($event.value);
 
     this.booking.getBooking($event.value)
     .subscribe(b=>{

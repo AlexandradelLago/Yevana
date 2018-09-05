@@ -10,14 +10,15 @@ import * as $ from 'jquery';
 })
 export class LoginComponent implements OnInit {
   logingUser = {password: '', username:''};
-  user;
+  user;error;
 
   constructor(private session: AuthService, private route: Router) { }
 
   login() {
     this.session.login(this.logingUser)
-    .subscribe(data => {
+    .subscribe((data) => {
       this.user = data;
+      
       localStorage.setItem('user', JSON.stringify(data));
       switch (this.user.role) {
         case 'USER':
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     if (!localStorage.getItem('user')) { return; }
      this.user = JSON.parse(localStorage.getItem('user'));
-     this.route.navigate(['home']);
+     this.route.navigate(['']);
      //this.route.navigate(['mypage']);
   }
 

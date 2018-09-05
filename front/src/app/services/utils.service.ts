@@ -44,7 +44,7 @@ return headers;
 
 
 function bookingCellRenderer(params) {
-  console.log(params.value)
+  //console.log(params.value)
   var allColumnIds = [];
   params.columnApi.getAllColumns().forEach(function(column) {
     allColumnIds.push(column.colId);
