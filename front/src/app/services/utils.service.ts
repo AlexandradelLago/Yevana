@@ -28,10 +28,11 @@ ArrayDates (start,totalDays){
 
 set365Date (day1, numofDays){
   var headers=[];
+  var options = { weekday: 'narrow', month: 'short', day: 'numeric' };
   let yesterday = day1;
   for (let i=0;i<=numofDays;i++){
       let today = this.addDays(yesterday,1);
-      headers.push({ headerName: today.toLocaleDateString(), field: today.toLocaleDateString(), cellRenderer:bookingCellRenderer} );
+      headers.push({ headerName: today.toLocaleDateString('es-ES', options), field: today.toLocaleDateString(), cellRenderer:bookingCellRenderer} );
       yesterday=today;
   }
 return headers;
@@ -44,7 +45,12 @@ return headers;
 
 function bookingCellRenderer(params) {
   console.log(params.value)
+  var allColumnIds = [];
+  params.columnApi.getAllColumns().forEach(function(column) {
+    allColumnIds.push(column.colId);
+  });
+  params.columnApi.autoSizeColumns(allColumnIds);
   var booked = "free";
-  if (params.value) var booked = "<div style='background:blue; height:30px; margin:0px  30px; border: 2px solid red; border-radius: 25px width:100%'> </div>";
+  if (params.value) var booked = "<div style='background:blue; height:30px; margin:0px  0px; border: 2px solid red; border-radius: 25px width:100%'> </div>";
   return booked;
 }

@@ -155,6 +155,9 @@ export class BookingsListComponent implements OnInit {
 public onReady() {
     console.log('onReady');
     this.calculateRowCount();
+   // params.api.sizeColumnsToFit();
+  
+
 }
 
  onSelectionChanged() {

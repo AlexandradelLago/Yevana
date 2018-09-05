@@ -4,11 +4,11 @@
     <button (click)="clearColumnsDef()"> CLEAR HEADERS</button>
 
     <ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-theme-material" [gridOptions]="gridOptions" [columnDefs]="columnDefs"
-        [rowData]="rowData" enableColResize enableSorting enableFilter groupHeaders suppressRowClickSelection toolPanelSuppressGroups
+        [rowData]="rowData" enableColResize=false enableSorting=false enableFilter=false groupHeaders suppressRowClickSelection toolPanelSuppressGroups
         toolPanelSuppressValues rowHeight="50" rowSelection="multiple" (cellClicked)="onCellClicked($event)" (selectionChanged)="onSelectionChanged()"
         (beforeFilterChanged)="onBeforeFilterChanged()" (afterFilterChanged)="onAfterFilterChanged()" (filterModified)="onFilterModified()"
         (beforeSortChanged)="onBeforeSortChanged()" (afterSortChanged)="onAfterSortChanged()" (rowClicked)="onRowClicked($event,myFormClient)"
-        (gridReady)="onReady()"></ag-grid-angular>
+        (gridReady)="onReady($event)"></ag-grid-angular>
 
    
         <div style='background:red; width: 50px'> hola</div>
