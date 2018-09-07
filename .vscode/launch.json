@@ -8,19 +8,19 @@
             "name": "Launch",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/back/app.js",
+            "program": "${workspaceRoot}/back/bin/www",
             // "port":3000,
-            "stopOnEntry": true,
-            "args": [],
-            "cwd": "${workspaceRoot}",
-            "preLaunchTask": null,
-            "runtimeExecutable": null,
-            "runtimeArgs": [
-                "--nolazy"
-            ],
-            "env": {
-                "NODE_ENV": "MONGODB_URL"
-            }
+            // "stopOnEntry": true,
+            // "args": [],
+            // "cwd": "${workspaceRoot}",
+            // "preLaunchTask": null,
+            // "runtimeExecutable": null,
+            // "runtimeArgs": [
+            //     "--nolazy"
+            // ],
+            // "env": {
+            //     "NODE_ENV": "MONGODB_URL"
+            //}
         }
     ]
 }

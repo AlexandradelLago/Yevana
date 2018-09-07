@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const passport       = require("passport");
-const bcryptSalt     = 19;
+const bcryptSalt     = 2;
 
 // solo para
 exports.deleteUser = (req,res,next)=>{
@@ -51,7 +51,7 @@ exports.postUser = (req, res, next)=>{
 
 
 exports.signUp = (req,res,next)=>{
-  if (!req.body.username || !req.body.password) {
+  if (!req.body.username || !req.body.password||!req.body.email) {
     res.status(400).json({ message: "Provide all the fields to sign up" });
   }
 
@@ -60,16 +60,18 @@ exports.signUp = (req,res,next)=>{
       res.status(400).json({ message: "The username already exists" });
       return;
     }
-    console.log("entro!")    
-    let hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt), null);
     
+    console.log("entro!")    
+    console.log(req.body)
+    let hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt), null);
+    console.log(hashPass);
 
     let newUser  = new User({
       username:req.body.username,
       password: hashPass,
       email:req.body.email
     });
-
+    console.log("ya he pasado el newuser")
     console.log(newUser);
 
 //Nueva forma de guardar el user , con Promesas
@@ -78,17 +80,19 @@ exports.signUp = (req,res,next)=>{
       .then(user => {
         //req.user=user
         req.login(user, (err) => {
-          if (err) { return res.status(500).json({ message: "Something went wrong" }); }
+          if (err) { return res.status(500).json({ message: "Something went wrong" });}
+          return res.status(200).json(req.user);
         })
         
       })
       .catch(err => res.status(400).json({ message: "Something went wrong" }))
 
   });
+  
 }
 
 exports.login = (req,res,next)=>{
-    res.status(200).json(req.user); passport.authenticate("local", (err, user, info) => {
+     passport.authenticate("local", (err, user, info) => {
       if (err) { return res.status(401).json(err); }
       if (!user) { return res.status(401).json(info); }
   
@@ -105,13 +109,13 @@ exports.logout = (req, res, next) => {
   }
 
 exports.loggedin = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      res.status(200).json(req.user);
-      return;
-    }
+    if (req.isAuthenticated()) {return res.status(200).json(req.user);}
+      return  res.status(403).json({ message: 'Unauthorized' });;
+}
   
-    res.status(403).json({ message: 'Unauthorized' });
-  }
+   
+  
+
 
 
 

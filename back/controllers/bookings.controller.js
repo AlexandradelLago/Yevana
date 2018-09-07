@@ -10,7 +10,9 @@ exports.getBookings = function(req, res, next) {
     Booking.find()
     .populate("_van")
     .populate("_user")
-    .then(items=>res.status(200).json(items))
+    .then(items=>{
+        res.status(200).json(items)
+    })
     .catch(e=>res.status(500).send(e));
   }
 

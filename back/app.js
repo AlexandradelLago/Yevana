@@ -34,6 +34,7 @@ var usersRouter = require('./routes/users');
 const bookingsRouter = require ('./routes/bookings');
 const vansRouter = require ('./routes/vans');
 const seasonsRouter = require('./routes/seasons');
+const frontRouter = require('./routes/web');
 
 
 var app = express();
@@ -45,11 +46,20 @@ const corsOptions= {
 }
 app.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGODB_URL)
-.then(console.log(`connected to ${process.env.MONGODB_URL}`)) 
+
+//
+
+mongoose.connect("mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")
+.then(console.log("connected to mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")) 
 .catch((err) => {
-  console.log("Not Connected to Database ERROR! ", err);
+  console.log("Not Connected to Database ERROR! "+err);
  });
+
+// mongoose.connect(process.env.MONGODB_URL)
+// .then(console.log(`connected to ${process.env.MONGODB_URL}`)) 
+// .catch((err) => {
+//   console.log("Not Connected to Database ERROR! "+err);
+//  });
 
 
 // view engine setup
@@ -77,11 +87,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', indexRouter);
-app.use('/user', usersRouter);
-app.use('/van', vansRouter);
-app.use('/booking', bookingsRouter);
-app.use('/season', seasonsRouter);
+app.use('/', frontRouter);
+app.use('/api/user', usersRouter);
+app.use('/api/van', vansRouter);
+app.use('/api/booking', bookingsRouter);
+app.use('/api/season', seasonsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -99,9 +109,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.all('/*', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+// app.all('/*', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
+
 
 module.exports = app;
 
