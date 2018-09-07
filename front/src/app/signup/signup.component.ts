@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef  } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as $ from 'jquery';
 
 @Component({
@@ -11,13 +12,20 @@ import * as $ from 'jquery';
 export class SignupComponent implements OnInit {
   newUser = {email: '', password: '', username:''};
   user;error;
-  constructor(private session: AuthService, private route: Router) { }
+  constructor(private session: AuthService,
+     private route: Router,
+    public toastr : ToastsManager,
+  vcr : ViewContainerRef) { 
+
+this.toastr.setRootViewContainerRef(vcr);
+
+  }
 
   signup() {
+    console.log("entro a signup")
     this.session.signup(this.newUser)
     .subscribe(data => {
-      console.log("vemos los datos")
-      console.log(data);
+     
       this.user = data;
       localStorage.setItem('user', JSON.stringify(data));
       this.session.login({username:this.user.username,password:this.user.password})

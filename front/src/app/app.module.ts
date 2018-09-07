@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 
 
-
 // Import angular2-fusioncharts
 import { FusionChartsModule } from 'angular2-fusioncharts';
  
@@ -23,6 +22,8 @@ import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import * as OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
 //import { MaterializeModule } from 'angular2-materialize';
 
+// toastr
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 // routes
 import { routes } from './routes/app.routing'
@@ -82,7 +83,8 @@ import { SignupComponent } from './signup/signup.component';
     // Maps, Widgets e.t.c. after FusionCharts
     FusionChartsModule.forRoot(FusionCharts, Charts,FintTheme,OceanTheme),
     CalendarModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    ToastModule.forRoot()
   ],
   providers: [VansService,AuthService,BookingService,UserService,SeasonService,UtilsService],
   bootstrap: [AppComponent]

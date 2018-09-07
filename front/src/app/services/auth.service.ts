@@ -4,45 +4,51 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/';
 import { environment } from '../../environments/environment';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Injectable()
 export class AuthService {
   options = {withCredentials: true};
-  constructor(private http: Http) { }
-  baseURL = environment.baseURL;
+  baseURL = environment.baseURL+"/api";
 
+
+  constructor(private http: Http, public toast : ToastsManager) { }
+  
   
   handleError(e) {
+    // var error = e._body.substring(12, e._body.length - 2);
+    // this.toast.error(error);
     return Observable.throw(e.json().message);
   }
 
   signup(user) {
-    return this.http.post(this.baseURL + `/signup`, user, this.options)
+    
+    return this.http.post(this.baseURL + `/user/signup`, user, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   login(user) {
-    return this.http.post(this.baseURL + `/login`, user, this.options)
+    return this.http.post(this.baseURL + `/user/login`, user, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.post(this.baseURL + `/logout`, {})
+    return this.http.post(this.baseURL + `/user/logout`, {})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(this.baseURL + `/loggedin`, this.options)
+    return this.http.get(this.baseURL + `/user/loggedin`, this.options)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  getPrivateData() {
-    return this.http.get(this.baseURL + `/private`, this.options)
-      .map(res => res.json())
-      .catch(this.handleError);
-  }
+  // getPrivateData() {
+  //   return this.http.get(this.baseURL + `/private`, this.options)
+  //     .map(res => res.json())
+  //     .catch(this.handleError);
+  // }
 }

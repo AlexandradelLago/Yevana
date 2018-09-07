@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
-  baseURL = environment.baseURL;
+  baseURL = environment.baseURL+"/api";
   constructor(private http:Http) { }
 
 

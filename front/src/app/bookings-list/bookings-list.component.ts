@@ -84,14 +84,6 @@ export class BookingsListComponent implements OnInit {
     bookingList:any[]=[];
     title = 'app';
     columnDefs :any;
-    // columnDefs = [
-    //     {headerName: 'Van', field: 'brand', checkboxSelection: true }
-    // ];
-
-    // rowData = [
-    //     { brand: 'Coche1', "8/2/2018": 'idReserva1',  "8/22/2018": 'idReserva1',  "8/17/2018": 'idReserva1'  },
-    //     { brand: 'Coche2', "8/5/2018": 'idReserva1',  "8/23/2018": 'idReserva1',  "8/20/2018": 'idReserva1' }
-    // ]
     rowData:any=[];
      row:any=[];
      arrayAux:any[]=[];
@@ -140,9 +132,6 @@ export class BookingsListComponent implements OnInit {
 
   }
  
-
-
-
   calculateRowCount() {
     if (this.gridOptions.api && this.rowData) {
         var model = this.gridOptions.api.getModel();

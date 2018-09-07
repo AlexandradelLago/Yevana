@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SeasonService {
-  baseURL = environment.baseURL;
+  baseURL = environment.baseURL+"/api";
   constructor(private http:Http) { }
 
   getList():Observable<any> {

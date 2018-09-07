@@ -11,7 +11,7 @@
         (gridReady)="onReady()"></ag-grid-angular>
 
    
-        <div style='background:red; width: 50px'> hola</div>
+    
 
 
 
@@ -19,14 +19,16 @@
 <div class="column">
     <div class="row">
         <div class="input-field col s9">
-           User Name: <input [(ngModel)]="name" value="Alvin" id="name" type="text" class="validate" name="name">
+          <input [(ngModel)]="name" value="Alvin" id="name" type="text" class="validate" name="name">
+           <label class="active" for="username">Username</label>
            
         </div>
     </div>
 
     <div class="row">
         <div class="input-field col s9">
-           Email: <input [(ngModel)]="email" value="Alvin" id="name" type="text" class="validate" name="email">
+            <input [(ngModel)]="email" value="Alvin" id="name" type="text" class="validate" name="email">
+           <label class="active" for="email">Email</label>
            
         </div>
     </div>
@@ -49,7 +51,8 @@
             </div>
             <div class="row">
                 <div class="input-field col s9">
-                   Price: <input [(ngModel)]="price" value="Alvin" id="price" type="text" class="validate" name="price">
+                  <input [(ngModel)]="price" value="Alvin" id="price" type="text" class="validate" name="price">
+                   <label class="active" for="price">Price</label>
                    
                 </div>
             </div>
