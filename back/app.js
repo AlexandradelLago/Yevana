@@ -1,21 +1,24 @@
 require('dotenv').config()
-// var app = require('../app');//
-// var port = normalizePort(process.env.PORT || '3000');
-// app.set('port', port);
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
-// passport 
 const bodyParser = require('body-parser');
+
+// passport 
 const session = require("express-session");
-
 const passport = require("passport");
-require("./config/passport");
 
-var mongoose = require('mongoose');
+
+// routes 
+var usersRouter = require('./routes/users');
+const bookingsRouter = require ('./routes/bookings');
+const vansRouter = require ('./routes/vans');
+const seasonsRouter = require('./routes/seasons');
+const frontRouter = require('./routes/web');
+
 
 // añado metodos a Date++++++++++++++++++
 Date.prototype.addDays = function (days) {
@@ -29,15 +32,22 @@ Date.prototype.toLocalTime = function () {
 }
 //++++++++++++++++++++++++++++++++
 
-// routes 
-var usersRouter = require('./routes/users');
-const bookingsRouter = require ('./routes/bookings');
-const vansRouter = require ('./routes/vans');
-const seasonsRouter = require('./routes/seasons');
-const frontRouter = require('./routes/web');
 
 
 var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")
+.then(console.log("connected to mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")) 
+.catch((err) => {
+  console.log("Not Connected to Database ERROR! "+err);
+ });
+
 
 // cors para la integracion con el front que va a ir en otro puerto, no 3000 si no 4200
 const corsOptions= {
@@ -46,36 +56,11 @@ const corsOptions= {
 }
 app.use(cors(corsOptions));
 
-
-//
-
-mongoose.connect("mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")
-.then(console.log("connected to mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")) 
-.catch((err) => {
-  console.log("Not Connected to Database ERROR! "+err);
- });
-
 // mongoose.connect(process.env.MONGODB_URL)
 // .then(console.log(`connected to ${process.env.MONGODB_URL}`)) 
 // .catch((err) => {
 //   console.log("Not Connected to Database ERROR! "+err);
 //  });
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-//passport 
-app.use(session({
-  secret: 'yevana',
-  resave: true,
-  saveUninitialized: true,
-  cookie : { httpOnly: true, maxAge: 2419200000 }
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 
@@ -86,6 +71,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//passport 
+app.use(session({
+  secret: 'yevana',
+  resave: true,
+  saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 }
+}));
+
+// Passport configuration
+require("./config/passport")(passport,app);
+
 
 app.use('/', frontRouter);
 app.use('/api/user', usersRouter);

@@ -71,22 +71,20 @@ exports.signUp = (req,res,next)=>{
       password: hashPass,
       email:req.body.email
     });
-    console.log("ya he pasado el newuser")
+   
     console.log(newUser);
 
 //Nueva forma de guardar el user , con Promesas
     console.log("llego a guardar")
     newUser.save()
       .then(user => {
-        //req.user=user
+        //esto es opcional, hago que se logee directamente tras signup
         req.login(user, (err) => {
           if (err) { return res.status(500).json({ message: "Something went wrong" });}
           return res.status(200).json(req.user);
         })
-        
-      })
       .catch(err => res.status(400).json({ message: "Something went wrong" }))
-
+      })
   });
   
 }
@@ -104,11 +102,13 @@ exports.login = (req,res,next)=>{
 }
 
 exports.logout = (req, res, next) => {
+  
     req.logout();
     res.status(200).json({ message: 'Success' });
   }
 
 exports.loggedin = (req, res, next) => {
+  console.log("estoy dentro de logged in")
     if (req.isAuthenticated()) {return res.status(200).json(req.user);}
       return  res.status(403).json({ message: 'Unauthorized' });;
 }
