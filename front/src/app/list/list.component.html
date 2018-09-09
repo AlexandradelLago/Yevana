@@ -1,36 +1,42 @@
 <app-nav-bar></app-nav-bar>
-
-<h1>
-    My Vans
+<header>
+  <h1>
+    Check our awesome list of cutting-edge vans
   </h1>
 
-  <section class="contactlist container fullpage">
-  <div class="col s3 m2" class="contact" *ngFor= "let van of vans">
-      <h2 class="header">{{van.brand}}</h2>
-      <div class="card">
-        <div class="card-image">
-        
-            <img src="assets/images/{{van.image}}" alt="imagen de van">
-        </div>
-        <div class="card-stacked">
+</header>
+<section class="contactlist container fullpage">
+  <div class="row">
+    <div class="col s12">This div is 12-columns wide on all screen sizes</div>
+    <div class="col s6">6-columns (one-half)</div>
+    <div class="col s6">6-columns (one-half)</div>
+  </div>
 
 
-          <div class="card-content">
-              <p>{{van.description.short}}</p>
+
+  <div class="row" class="contact" *ngFor="let van of vans">
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-image">
+                  <img src="assets/images/{{van.image}}" alt="imagen de van">
+                <span class="card-title">{{van.brand}}</span>
+               
+                
+                <a [routerLink]="['/alquiler', van._id]" class="btn-floating halfway-fab waves-effect waves-light red">  <i class="material-icons">check</i>Book</a>
+              </div>
+              <div class="card-content">
+                  <p>{{van.description.short}}</p>
+                  <p>
+                      <i class="material-icons">build</i> {{van.features.motor}}
+                      <i class="material-icons">local_gas_station</i> {{van.features.fuel}} </p>
+                    <p>
+                      <i class="material-icons">group</i> {{van.features.pax}}
+                      <i class="material-icons">hotel</i> {{van.features.beds}}
+                    </p>
+             
+              </div>
+            </div>
           </div>
+  </div>
 
-          <p> <i class="material-icons">build</i>  {{van.features.motor}}  <i class="material-icons">local_gas_station</i>   {{van.features.fuel}} </p>
-          <p> <i class="material-icons">group</i>  {{van.features.pax}}  <i class="material-icons">hotel</i>   {{van.features.beds}} </p>
-          <div class="card-action">
-            <a  [routerLink]="['/alquiler', van._id]" class="btn-large waves-effect waves-light red"><i class="material-icons">check</i>Book</a>
-          </div>
-    
-        </div>
-      </div>
-    </div>
-    <div>
-
-    
-    
-    </div>
-  </section>
+</section>

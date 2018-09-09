@@ -12,7 +12,9 @@ h1 {
     text-align: left;
   
 }
-
+.col{
+    border:solid 2px black;
+}
 
 .contact p{
     width:50vw;
