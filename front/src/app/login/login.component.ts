@@ -42,16 +42,18 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    
+    console.log("llego dentro de login")
     this.session.login(this.logingUser)
     .subscribe((data) => {
+      console.log("dentro de la session")
       this.user = data;
       this.showSuccess();
-      localStorage.setItem('user', JSON.stringify(data));
+      sessionStorage.setItem('user', JSON.stringify(data));
+
       setTimeout(()=>{
         switch (this.user.role) {
           case 'USER':
-            this.route.navigate(['']);
+            this.route.navigate(['alquiler']);
           break;
           case 'ADMIN':
             this.route.navigate(['admin']);
@@ -66,9 +68,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    // $(document).ready(function() {
-    //   ($('.parallax') as any).parallax();
-    // });
+    $(document).ready(function() {
+      ($('.parallax') as any).parallax();
+    });
 
     // if (!localStorage.getItem('user')) { return; }
     //  this.user = JSON.parse(localStorage.getItem('user'));

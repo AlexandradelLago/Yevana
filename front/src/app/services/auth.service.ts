@@ -25,13 +25,13 @@ export class AuthService {
     
     return this.http.post(this.baseURL + `/user/signup`, user, this.options)
       .map(res => res.json())
-      .catch(this.handleError);
+      .catch(err=>this.handleError(err));
   }
 
   login(user) {
     return this.http.post(this.baseURL + `/user/login`, user, this.options)
       .map(res => res.json())
-      .catch(this.handleError);
+      .catch(err=>this.handleError(err));
   }
 
   logout() {
@@ -43,7 +43,7 @@ export class AuthService {
   isLoggedIn() {
     return this.http.get(this.baseURL + `/user/loggedin`, this.options)
       .map(res => res.json())
-      .catch(this.handleError);
+      .catch(err=>this.handleError(err));
   }
 
   // getPrivateData() {

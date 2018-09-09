@@ -12,28 +12,20 @@ export class ListComponent implements OnInit {
 
   vans: any;
 
-
   constructor(private router:Router,
   private vansService:VansService) { }
   
   ngOnInit() {
     this.vansService.getList()
-    .subscribe(vans=>{ this.vans = vans; console.log(this.vans)})
+    .subscribe(vans=>{ this.vans = vans; 
+     // console.log(this.vans)
+    })
   }
 
   onSubmit(event){
     event.preventDefault();
   }
 
-  // addContact(){
-  //   console.log("Add contact has been called");
-
-  //    this.vans.push(this.newVan);
-  //    console.log(this.vans);
-  //    this.newVan = {};
-    // add contact to contacts list
-    // clear inputs
-  
 
 }
 

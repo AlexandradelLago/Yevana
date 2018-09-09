@@ -3,7 +3,7 @@
     <a id="logo-container" href="#" class="brand-logo">YEVANA</a>
     <ul class="right hide-on-med-and-down">
         <li> <a [routerLink]="['/']"> Home </a> </li>
-        <li> <a href="#"> Log Out </a> </li>
+        <li (click)="logout()"><a [routerLink]="['/']"> Log Out </a> </li>
         <li> <a [routerLink]="['/admin/bookings']"> Bookings </a> </li>
         <li> <a [routerLink]="['/admin/season']"> Seasons </a> </li>
         <li> <a [routerLink]="['/admin/users']"> Clients </a> </li>
@@ -13,7 +13,7 @@
 
     <ul id="nav-mobile" class="sidenav">
         <li> <a [routerLink]="['/']"> Home </a> </li>
-        <li> <a href="#"> Log Out </a> </li>
+        <li *ngIf="user" (click)="logout()"><a [routerLink]="['/']"> Log Out </a> </li>
         <li> <a [routerLink]="['/admin/bookings']"> Bookings </a> </li>
         <li> <a [routerLink]="['/admin/season']"> Seasons </a> </li>
         <li> <a [routerLink]="['/admin/users']"> Clients </a> </li>

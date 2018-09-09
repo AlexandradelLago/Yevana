@@ -1,70 +1,55 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="row container col s4 m2 fullpage">
-  
-    This is the page for the van: {{vanId }}
-  
-  
-  
-  
+
   <button (click)="showDetails()">Details</button>
-  <div   *ngIf="van" class="card col s6">
-    <img class="circle responsive-img" src="assets/images/{{van.image}}" alt="image of van" >
+  <div *ngIf="van" class="card col s6">
+    <img class="circle responsive-img" src="assets/images/{{van.image}}" alt="image of van">
     <p>{{van.description.short||async}}</p>
     <p>{{van.name}}</p>
   </div>
 
   <button (click)="showBookings()">Details of bookings</button>
-  <div   *ngIf="bookingList" class="card col s6" >
-    <div   *ngFor="let booking of bookingList">
-<div>
+  <div *ngIf="bookingList" class="card col s6">
+    <div *ngFor="let booking of bookingList">
+      <div>
         <p>{{booking.startDate}} , {{booking.endDate}}</p>
-      
-</div>
-    
+
+      </div>
+
     </div>
   </div>
-<div *ngIf="booking">
-<p>BOOKING MADE!</p>
-<p>{{newbooking.startDate}}</p>
-<p>{{newbooking|json}}</p>
+  <div *ngIf="booking">
+    <p>BOOKING MADE!</p>
+    <p>{{newbooking.startDate}}</p>
+    <p>{{newbooking|json}}</p>
   </div>
 
 
 
-    <form class="form" (ngSubmit)="addBooking(myForm)" #myForm="ngForm">
-        <div class="s8 container">
-
-            <div *ngIf="van">
-                <input [(ngModel)]="vanId" type="hidden" name="_van" value="{{vanId}}">
-            </div>
-    
-          <div class="input-group" >
-            <label for="booking-startDate">Pick the start date</label>
-            <p-calendar [inline]="false" [showIcon]="true"  name="startDate" [disabledDates]="invalidDates" 
-            [(ngModel)]="startDate" [minDate]="minDateValue" [maxDate]="maxDateValue"
-             [readonlyInput]="true" ><p>{{startDate}}</p> </p-calendar>
-
-           
-          </div>
+  <form class="form-container amber lighten-4  col s3" (ngSubmit)="addBooking(myForm)" #myForm="ngForm">
+    <div class="s8 container">
+      <div class="input-field col s6">
+        <div class="input-group">
+          <label for="booking-startDate">Pick the start date</label>
+          <p-calendar [inline]="false" [showIcon]="true" name="startDate" [disabledDates]="invalidDates" [(ngModel)]="startDate" [minDate]="minDateValue"
+            [maxDate]="maxDateValue" [readonlyInput]="true">
+            <p>{{startDate}}</p>
+          </p-calendar>
+        </div>
+     </div>
+      <div class="input-field col s6">
           <div class="input-group">
             <label for="booking-endDate">Pick the end date</label>
-            <p-calendar  [showIcon]="true" name="endDate" [(ngModel)]="endDate"
-             [disabledDates]="invalidDates"  [minDate]="startDate" [maxDate]="maxDateValue" ><p>{{endDate}}</p> </p-calendar>
-          
+            <p-calendar [showIcon]="true" name="endDate" [(ngModel)]="endDate" [disabledDates]="invalidDates" [minDate]="startDate" [maxDate]="maxDateValue">
+              <p>{{endDate}}</p>
+            </p-calendar>
+
           </div>
-          <button class="btn waves-effect waves-light" type ="submit">Submit New Booking</button>
-        
-
-        </div>
-       
-    </form>
-
-  
-  
-
- 
- 
+          <button class="btn waves-effect waves-light" type="submit">Submit New Booking</button>
+      </div>
+      </div>
+  </form>
 
 </div>
 

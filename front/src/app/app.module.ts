@@ -52,6 +52,7 @@ import { SeasonService } from './services/season.service';
 import { UtilsService } from './services/utils.service';
 import { HomeNavBarComponent } from './home-nav-bar/home-nav-bar.component';
 import { SignupComponent } from './signup/signup.component';
+import { PrivateComponent } from './private/private.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { SignupComponent } from './signup/signup.component';
     DashboardComponent,
     UsersComponent,
     HomeNavBarComponent,
-    SignupComponent
+    SignupComponent,
+    PrivateComponent
   ],
   imports: [
     BrowserModule,

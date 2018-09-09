@@ -19,6 +19,7 @@ export class BookingComponent implements OnInit {
   van; savedVan;
   vanId: String;
   today:Date;
+  user;
   booking;
   bookingList;
   invalidDates:Date[]=[];
@@ -50,19 +51,11 @@ export class BookingComponent implements OnInit {
        this.bookingService.getListBookingsByVan(params['id'])
                             .subscribe((bookingList)=>{
                               this.bookingList=bookingList;
-                              //console.log(JSON.stringify(bookingList));
                               bookingList.forEach(b=>{
-                                //this.results = [ ...this.results, ...data.results];
-                               // console.log("este es el array de dates del cada booking")
-                               // console.log(this.ArrayDates(b.startDate,b.totalDays))
                                 this.invalidDates =[...this.invalidDates,...this.ArrayDates(b.startDate,b.total)] 
-                             // console.log("dias reservados "+this.invalidDates)
                                 this.bookingListbyVan.push(b)
                               });
                               this.savedBookingListByVan=this.bookingList;
-                             // console.log(this.bookingListbyVan)
-                              //console.log(JSON.stringify(this.bookingListbyVan[0].startDate))
-                              //console.log(this.bookingListbyVan[0].startDate)
                             })
                                 
     
@@ -99,10 +92,23 @@ addBooking(myForm){
       paid:b.paid,
       total:b.total
     };
-   localStorage.setItem('booking', JSON.stringify(halfbooking)); 
-  //  console.log(this.vanId);
-   this.router.navigate([`/alquiler/${b._id}/client`])
-  // setTimeout (() => { ; }, 1000);
+   sessionStorage.setItem('booking', JSON.stringify(halfbooking)); 
+   this.user = sessionStorage.getItem('user');
+    if (this.user) {
+
+      this.router.navigate(['mybookings']);
+      this.booking._user = this.user._id;
+      console.log(this.booking);
+      this.bookingService.updateBooking(this.booking)
+        .subscribe(b => {
+          console.log("este es mi boking updated" + JSON.stringify(b));
+
+        });    
+   }else{
+    this.router.navigate([`/alquiler/${b._id}/client`])
+    // setTimeout (() => { ; }, 1000);
+   }
+
   });
 }
   showDetails() {

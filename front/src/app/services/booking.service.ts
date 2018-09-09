@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 import { environment } from '../../environments/environment';
 @Injectable()
 export class BookingService {
-  baseURL = environment.baseURL;
+  baseURL = environment.baseURL+"/api";
   constructor(private http:Http) { }
 
   getListBookings():Observable<any> {

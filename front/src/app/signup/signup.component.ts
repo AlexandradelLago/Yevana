@@ -10,7 +10,8 @@ import * as $ from 'jquery';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  newUser = {email: '', password: '', username:''};
+ newUser = {email: '', password: '', username:''};
+ // newUser = {password: '', username:''};
   user;error;
   constructor(private session: AuthService,
      private route: Router,
@@ -22,16 +23,11 @@ this.toastr.setRootViewContainerRef(vcr);
   }
 
   signup() {
-    console.log("entro a signup")
+  
     this.session.signup(this.newUser)
     .subscribe(data => {
-     
       this.user = data;
-      localStorage.setItem('user', JSON.stringify(data));
-      this.session.login({username:this.user.username,password:this.user.password})
-      .subscribe(data => {
-        this.user = data;
-        localStorage.setItem('user', JSON.stringify(data));
+      sessionStorage.setItem('user', JSON.stringify(data));
         switch (this.user.role) {
           case 'USER':
             this.route.navigate(['alquiler']);
@@ -40,7 +36,7 @@ this.toastr.setRootViewContainerRef(vcr);
             this.route.navigate(['admin']);
           break;
         }
-      });
+      
     });
   }
   ngOnInit() {

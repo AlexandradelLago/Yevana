@@ -11,6 +11,7 @@ import {BookingsListComponent} from '../bookings-list/bookings-list.component';
 import {ClientComponent} from '../client/client.component';
 import {UsersComponent} from '../users/users.component';
 import {SignupComponent} from '../signup/signup.component';
+import {PrivateComponent} from '../private/private.component';
 
 
 export const routes:Routes = [
@@ -23,6 +24,7 @@ export const routes:Routes = [
     {path:"admin", component:DashboardComponent},
     {path:"admin/bookings", component:BookingsListComponent},
     {path:"admin/season", component:SeasonComponent},
-    {path:"admin/users", component:UsersComponent}
+    {path:"admin/users", component:UsersComponent},
+    {path:"mybookings",component:PrivateComponent}
 ]
 
