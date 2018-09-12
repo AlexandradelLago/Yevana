@@ -15,7 +15,9 @@ import {CalendarModule} from 'primeng/calendar';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  
+  step1:Boolean=true;
+  step2:Boolean=false;
+  step3:Boolean=false;
   van; savedVan;
   vanId: String;
   today:Date;
@@ -24,17 +26,14 @@ export class BookingComponent implements OnInit {
   bookingList;
   invalidDates:Date[]=[];
   bookingListbyVan:any[]=[];savedBookingListByVan:Object[];
-  minDateSeason:Date= new Date("2018-06-10");maxDateValue:Date=new Date("2018-09-15");
+  minDateSeason:Date= new Date();maxDateValue:Date=new Date("2018-10-31");
   minDateValue;
   startDate;endDate; _van;
   constructor(private router : Router, private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }
 
   ngOnInit() {
-    // $(document).ready(function(){
-    //   (<any>$('.datepicker') ).datepicker();
-    // });
-    
+  
     this.minDateValue = this.getMinDateValue(this.minDateSeason);
 
     this.route.params
@@ -95,18 +94,20 @@ addBooking(myForm){
    sessionStorage.setItem('booking', JSON.stringify(halfbooking)); 
    this.user = sessionStorage.getItem('user');
     if (this.user) {
-
-      this.router.navigate(['mybookings']);
+      this.step2=true;
       this.booking._user = this.user._id;
       console.log(this.booking);
       this.bookingService.updateBooking(this.booking)
         .subscribe(b => {
+          this.router.navigate([`mybookings/${b._id}`]);
           console.log("este es mi boking updated" + JSON.stringify(b));
 
         });    
    }else{
-    this.router.navigate([`/alquiler/${b._id}/client`])
-    // setTimeout (() => { ; }, 1000);
+    //  this.step3=true;
+    //  this.step1=false;
+   this.router.navigate([`/alquiler/${b._id}/client`])
+    setTimeout (() => { ; }, 1000);
    }
 
   });

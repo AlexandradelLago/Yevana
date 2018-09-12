@@ -1,5 +1,8 @@
 //materialize
 import 'materialize-css';
+//import { MaterializeModule } from 'angular2-materialize';
+
+import * as $ from 'jquery';
 
 //modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +13,6 @@ import {CalendarModule} from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 
-
 // Import angular2-fusioncharts
 import { FusionChartsModule } from 'angular2-fusioncharts';
  
@@ -20,7 +22,6 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import * as OceanTheme from 'fusioncharts/themes/fusioncharts.theme.ocean';
-//import { MaterializeModule } from 'angular2-materialize';
 
 // toastr
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
@@ -87,6 +88,7 @@ import { PrivateComponent } from './private/private.component';
     CalendarModule,
     AgGridModule.withComponents([]),
     ToastModule.forRoot()
+    //MaterializeModule
   ],
   providers: [VansService,AuthService,BookingService,UserService,SeasonService,UtilsService],
   bootstrap: [AppComponent]

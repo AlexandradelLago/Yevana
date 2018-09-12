@@ -25,6 +25,6 @@ export const routes:Routes = [
     {path:"admin/bookings", component:BookingsListComponent},
     {path:"admin/season", component:SeasonComponent},
     {path:"admin/users", component:UsersComponent},
-    {path:"mybookings",component:PrivateComponent}
+    {path:"mybookings/:id",component:PrivateComponent}
 ]
 

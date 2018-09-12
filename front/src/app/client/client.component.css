@@ -1,12 +1,14 @@
-/* .formClient {
-    width: 50%;
-    border: 1px solid black; 
-    background-color: aqua;
-    display:block;
-    text-align: center;  
+
+
+  .box{
+    border-radius: 5%;
+    margin:10px 10px;
+    text-align: center;
+  
 }
-.form {
-    display:inline-block;
-} */
-
-
+.card{
+  margin-right: 10px;
+}
+.border{
+  border: dashed black 2px;
+}

@@ -20,6 +20,7 @@ export class AdminNavComponent implements OnInit {
 logout(){
   this.session.logout()
   .subscribe(m=>{
+    sessionStorage.clear();
       console.log(m);
       console.log("loggedout")
   });

@@ -1,42 +1,40 @@
 <app-nav-bar></app-nav-bar>
 <header>
   <h1>
-    Check our awesome list of cutting-edge vans
+    Check our awesome vans and pursue your dreams...
   </h1>
 
 </header>
-<section class="contactlist container fullpage">
-  <div class="row">
-    <div class="col s12">This div is 12-columns wide on all screen sizes</div>
-    <div class="col s6">6-columns (one-half)</div>
-    <div class="col s6">6-columns (one-half)</div>
-  </div>
+<section class="container fullpage">
+  <div class="contactlist">
+    <div class="z-depth-5 contact" *ngFor="let van of vans">
 
-
-
-  <div class="row" class="contact" *ngFor="let van of vans">
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-image">
-                  <img src="assets/images/{{van.image}}" alt="imagen de van">
-                <span class="card-title">{{van.brand}}</span>
-               
-                
-                <a [routerLink]="['/alquiler', van._id]" class="btn-floating halfway-fab waves-effect waves-light red">  <i class="material-icons">check</i>Book</a>
+      <div class="card">
+        <div class="card-image">
+          <img class="center" src="assets/images/{{van.image}}" alt="imagen de van">
+          <span class="card-title">{{van.brand}}</span>
+          <a [routerLink]="['/alquiler', van._id]" class="btn-floating btn-large pulse halfway-fab waves-effect waves-light red">
+            <i class="material-icons">add</i>Book</a>
+        </div>
+        <div class="card-content">
+            <div>
+                <p class="red-text"> From {{van.price[0]}} EUR/day</p>
               </div>
-              <div class="card-content">
-                  <p>{{van.description.short}}</p>
-                  <p>
-                      <i class="material-icons">build</i> {{van.features.motor}}
-                      <i class="material-icons">local_gas_station</i> {{van.features.fuel}} </p>
-                    <p>
-                      <i class="material-icons">group</i> {{van.features.pax}}
-                      <i class="material-icons">hotel</i> {{van.features.beds}}
-                    </p>
-             
-              </div>
-            </div>
-          </div>
-  </div>
+          <p>{{van.description.short}}</p>
+          <p>
+            <i class="material-icons">build</i> {{van.features.motor}}
+            <i class="material-icons">local_gas_station</i> {{van.features.fuel}} </p>
+          <p>
+            <i class="material-icons">group</i> {{van.features.pax}}
+            <i class="material-icons">hotel</i> {{van.features.beds}}
+          </p>
+        </div>
+       
+        <div class="card-action">
 
+
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,45 +1,60 @@
 
-
-<app-nav-bar></app-nav-bar>
-
-<div class="fullpage">
-
-    <p *ngIf="booking"nn>
-        client works!
-        {{booking|json}}
-      </p>
-      
-      
-      <div class="s4 container formClient">
-
-
-        <form class="form-container amber lighten-4  col s6" (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
-      
-            <div class="input-field col s6 input-center">
-                <i class="material-icons prefix">account_circle</i>
-          <label for="name">Name</label>
-          <input  [(ngModel)]="name" placeholder = "your name"type="text" name="name" id="name">
-         </div>
-         <div class="input-field col s6 input-center">
-            <i class="material-icons prefix">email</i>
-        <label for="email">Email</label>
-        <input  [(ngModel)]="email" placeholder = "your email"type="text" name="email" id="email">
-        </div>
-        <div class="input-field col s6 input-center">
-            <i class="material-icons prefix">lock</i>
-
-          <label for="password">Password</label>
-          <input  [(ngModel)]="password" placeholder = "Enter your password"type="password" name="password" id="password">
-         </div>
-          
-      
-         <button class="btn waves-effect waves-light" type ="submit">Add client</button>
         
-        </form>
-      
-      </div>
-      
-</div>
+            <app-nav-bar></app-nav-bar>
+            <header>
+                <p *ngIf="booking"nn>
+                    {{booking|json}}
+                </p>
+              
+                <div class="row container ">
+                    <div class="col s3 pink lighten-1 indigo-text text-lighten-3  box">
+                        <h5>Book your van </h5>
+                            <i class="large material-icons">book</i>
+                    </div>
+                    <div class="col border s3 pink lighten-2 indigo-text text-lighten-3  box">
+                        <h5> Register </h5>
+                            <i class="large material-icons">account_circle</i>
+                    </div>
+                    <div class="col s3 pink lighten-3 indigo-text text-lighten-3 box">
+                            <h5>Check booking</h5>
+                            <i class="large material-icons">check</i>
+                    </div>
+
+            </div>
+            
+            </header>
+
+            <div class="parallax-container">
+                    <div class="parallax"><img src="../assets/images/background3.jpg"></div>
+                    <div class="container">
+                     <form class="form-container amber lighten-4  col s6" (ngSubmit)="addClient(myFormClient)" #myFormClient="ngForm">
+                            <div class="input-field col s3 input-center">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input [(ngModel)]="newUser.username" name="username" id="username" type="text" class="validate">
+                                <label for="username" >Username</label>
+                              </div>
+                  
+                          <div class="input-field col s3 input-center">
+                            <i class="material-icons prefix">email</i>
+                            <input [(ngModel)]="newUser.email" name="email" id="email" type="email" class="validate">
+                            <label for="email" >Email</label>
+                          </div>
+                          <div class="input-field col s3 input-center">
+                            <i class="material-icons prefix">lock</i>
+                            <input [(ngModel)]="newUser.password" name="password" id="icon_telephone" type="password" class="validate" >
+                            <label for="icon_telephone">Password</label>
+                          </div>
+                          <button class="btn waves-effect waves-light" type ="submit">Add client</button>
+                        </form>
+                  
+                        </div>
+                  </div>
+                        
+
+
+    
+
+
 
 
 

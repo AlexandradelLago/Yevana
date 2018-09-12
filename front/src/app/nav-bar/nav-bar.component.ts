@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
   constructor(private session : AuthService) { }
   
   ngOnInit() {
+
     this.session.isLoggedIn()
     .subscribe(user=>{
       console.log(user);

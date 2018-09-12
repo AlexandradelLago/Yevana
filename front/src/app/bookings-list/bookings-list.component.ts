@@ -12,73 +12,7 @@ export class BookingsListComponent implements OnInit {
 
     startDate;email;name;vanName;endDate;total;price;
     rowCount:string;
-  width1 = 600;
-  height1 = 400;
-  type1 = 'pie3d';
-  dataFormat1 = 'json';
-  dataSource1 = {
-  "chart": {
-      "caption": "Age profile of website visitors",
-      "subcaption": "Last Year",
-      "startingangle": "120",
-      "showlabels": "0",
-      "showlegend": "1",
-      "enablemultislicing": "0",
-      "slicingdistance": "15",
-      "showpercentvalues": "1",
-      "showpercentintooltip": "0",
-      "plottooltext": "Age group : $label Total visit : $datavalue",
-      "theme": "ocean"
-  },
-  "data": [
-      {
-          "label": "Teenage",
-          "value": "1250400"
-      },
-      {
-          "label": "Adult",
-          "value": "1463300"
-      },
-      {
-          "label": "Mid-age",
-          "value": "1050700"
-      },
-      {
-          "label": "Senior",
-          "value": "491000"
-      }
-  ]
-}
-  width2 = 600;
-    height2 = 400;
-    type2 = 'column2d';
-    dataFormat2 = 'json';
-    dataSource2 = {
-    "chart": {
-        "caption": "Revenues's per month",
-        "subCaption": "Revenue per month and per van in the last 5 months",
-        "numberPrefix": "$",
-        "theme": "fint"
-    },
-    "data": [
-        {
-            "label": "June",
-            "value": "880000"
-        },
-        {
-            "label": "July",
-            "value": "730000"
-        },
-        {
-            "label": "August",
-            "value": "590000"
-        },
-        {
-            "label": "September",
-            "value": "520000"
-        }
-    ]
-    };
+ 
     public gridOptions:GridOptions;
     showToolPanel;
     bookingList:any[]=[];
@@ -90,7 +24,7 @@ export class BookingsListComponent implements OnInit {
      rowDataAux:any[]=[];
     vanList:any[]=[];
     headernames:any[]=[ {headerName: 'Van', field: 'brand', checkboxSelection: true }];
-    day0:Date=new Date("August 1,18");
+    day0:Date=new Date("September 1,18");
 
   constructor( private booking : BookingService, private van : VansService, private date: UtilsService) {
     this.gridOptions = <GridOptions>{};
@@ -100,7 +34,7 @@ export class BookingsListComponent implements OnInit {
 
   console.log(this.rowData)
 
-    this.headernames=[...this.headernames,...this.date.set365Date(this.day0,30)];
+    this.headernames=[...this.headernames,...this.date.set365Date(this.day0,60)];
       console.log(this.headernames);
       this.columnDefs=this.headernames;
     

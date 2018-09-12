@@ -23,6 +23,8 @@ p {
   color: #26a69a;
 }
 
+
+
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -43,6 +45,15 @@ p {
   }
 }
 
+body {
+  display:flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main{
+  min-height: 80vh;
+  flex: 1 0 auto;
+}
 
 body {
   min-height: 100vh;
@@ -63,4 +74,12 @@ body {
 
 footer.page-footer {
   margin: 0;
+}
+
+h1,h3 {
+  width: 100vw;
+  text-align: left;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color:lightseagreen;
+
 }

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as $ from 'jquery';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -46,7 +47,9 @@ export class LoginComponent implements OnInit {
     this.session.login(this.logingUser)
     .subscribe((data) => {
       console.log("dentro de la session")
+      
       this.user = data;
+      console.log(this.user);
       this.showSuccess();
       sessionStorage.setItem('user', JSON.stringify(data));
 
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
             this.route.navigate(['admin']);
           break;
         }
-      }, 500);
+      }, 800);
       
     });
   }
@@ -71,11 +74,6 @@ export class LoginComponent implements OnInit {
     $(document).ready(function() {
       ($('.parallax') as any).parallax();
     });
-
-    // if (!localStorage.getItem('user')) { return; }
-    //  this.user = JSON.parse(localStorage.getItem('user'));
-    //  this.route.navigate(['']);
-    //  //this.route.navigate(['mypage']);
   }
 
 }

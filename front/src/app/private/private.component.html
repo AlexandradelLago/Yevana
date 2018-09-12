@@ -1,8 +1,36 @@
+<app-nav-bar>
+</app-nav-bar>
+<header>
+        <div class="row container ">
+                <div class="col s3 pink lighten-1 indigo-text text-lighten-3  box">
+                    <h5>Book your van </h5>
+                        <i class="large material-icons">book</i>
+                </div>
+                <div class="col s3 pink lighten-2 indigo-text text-lighten-3  box">
+                    <h5> Register </h5>
+                        <i class="large material-icons">account_circle</i>
+                </div>
+                <div class="col s3 pink lighten-3 border indigo-text text-lighten-3 box">
+                        <h5>Check booking</h5>
+                        <i class="large material-icons">check</i>
+                </div>
 
-<app-nav-bar></app-nav-bar>
-
-<div class="container private fullpage">
-    <p>
-        private works!
-      </p>
-</div>
+        </div>
+        <p class="teal white-text"> Your booking details :</p>
+</header>
+<main>
+    <div class="container private fullpage">
+        <label for="fname">Van </label>
+        <p>{{booking._van.brand}}</p>
+        <label for="lname">Start Date</label>
+        <p>{{booking.startDate}}</p>
+        <label for="fname">End Date</label>
+        <p>{{booking.endDate}}</p>
+        <label for="lname">Price</label>
+        <p>{{booking.price}}</p>
+        <label for="fname">Total number of Days</label>
+        <p>{{booking.total}}</p>
+        <label for="lname">PAY</label>
+        <p></p>
+    </div>
+</main>
