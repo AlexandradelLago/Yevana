@@ -26,19 +26,22 @@ exports.getUsers = function(req, res, next) {
 
   // falta hacer un getUser
   exports.getOne = function(req, res, next) {
+    console.log(req.user);
     User.findById(req.params.id)
     .then(items=>res.status(200).json(items))
     .catch(e=>res.status(500).send(e));
   }
 
-// solo para USER en cuestion
+// solo para USER en cuestion -- cambiar ya que es un signup 
 exports.postUser = (req, res, next)=>{
   console.log("este es el req.body de User  s"+req.body)
+  let hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt), null);
+  console.log(hashPass);
     const newUser = new User({
-      name: req.body.name,
+     // name: req.body.name,
       username:req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: hashPass,
       //role:req.body.role
     });
 
@@ -60,9 +63,7 @@ exports.signUp = (req,res,next)=>{
       res.status(400).json({ message: "The username already exists" });
       return;
     }
-    
-    console.log("entro!")    
-    console.log(req.body)
+
     let hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(bcryptSalt), null);
     console.log(hashPass);
 

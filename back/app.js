@@ -41,12 +41,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
 mongoose.connect("mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")
 .then(console.log("connected to mongodb://admin:admin1@ds263571.mlab.com:63571/yevana")) 
 .catch((err) => {
   console.log("Not Connected to Database ERROR! "+err);
  });
+
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/yevana')
+//     .then(console.log("Connected to DB!!"));
 
 
 // cors para la integracion con el front que va a ir en otro puerto, no 3000 si no 4200
@@ -56,11 +60,7 @@ const corsOptions= {
 }
 app.use(cors(corsOptions));
 
-// mongoose.connect(process.env.MONGODB_URL)
-// .then(console.log(`connected to ${process.env.MONGODB_URL}`)) 
-// .catch((err) => {
-//   console.log("Not Connected to Database ERROR! "+err);
-//  });
+
 
 
 
