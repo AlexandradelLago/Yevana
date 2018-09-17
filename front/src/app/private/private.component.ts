@@ -11,9 +11,9 @@ import {BookingService} from '../services/booking.service';
 export class PrivateComponent implements OnInit {
 
 user:Object= JSON.parse(localStorage.getItem('user'));
-booking:Object=JSON.parse(localStorage.getItem('booking'));
+//booking:Object=JSON.parse(localStorage.getItem('booking'));
 
-
+booking:Object={"startDate":"","endDate":"","price":"","total":"","_van":{"brand":""}};
 
 constructor(private router : Router, private route: ActivatedRoute, private vansService:VansService
   , private bookingService:BookingService) { }

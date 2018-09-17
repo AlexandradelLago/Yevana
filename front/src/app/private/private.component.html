@@ -21,7 +21,7 @@
 <main>
     <div class="container private fullpage">
         <label for="fname">Van </label>
-        <p>{{booking._van.brand}}</p>
+        <p *ngIf="booking">{{booking._van.brand}}</p>
         <label for="lname">Start Date</label>
         <p>{{booking.startDate}}</p>
         <label for="fname">End Date</label>
