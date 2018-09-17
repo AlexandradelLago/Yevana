@@ -5,7 +5,7 @@ const Season = require("../models/Season");
 const moment = require('moment');
 
 
-// solo para ADMIN
+// listado de todos los bookings
 exports.getBookings = function(req, res, next) {
     Booking.find()
     .populate("_van")
@@ -15,7 +15,7 @@ exports.getBookings = function(req, res, next) {
     })
     .catch(e=>res.status(500).send(e));
   }
-
+// listado de todas las reservas de una van en particular
   exports.getBookingsbyVan = function(req, res, next) {
     Booking.find({"_van" : req.params._van})
     .populate("_van")
@@ -24,7 +24,7 @@ exports.getBookings = function(req, res, next) {
     .catch (e=> res.status(500).send(e));
   
   }
-
+// booking por id en params
 exports.getBooking = function (req,res,next){
     Booking.findById(req.params.id)
     .populate("_van")
@@ -37,6 +37,7 @@ exports.getBooking = function (req,res,next){
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // USER con el ID y ADMIN
+  // funcion que me devuelve un array de dias entre fecha inicial de la reserva y fecha final
 function ArrayDates (start,totalDays){
     let arrayDates = [start];
     for (var i=1;i<totalDays+1;i++){
@@ -44,11 +45,16 @@ function ArrayDates (start,totalDays){
     }
     return arrayDates;
 };
+
+
+// funcíon que me cuenta el numero de dias de la reserva
 function TotalDays(start,end){
     var ONE_DAY = 1000 * 60 * 60 * 24
     var totalDays = Math.round(Math.abs(end - start)/ONE_DAY);
     return totalDays;
 }
+
+// funcion que me calcula el precio de la reserva dependiendo de la furgoneta que se reserve, los dias y si estos son de baja , alta o media temporada
 
 function GetPrice(car,arrayDates,seasons){
     let price=0;
@@ -78,7 +84,7 @@ function GetPrice(car,arrayDates,seasons){
       return price;
 }
 
-
+// para hacer una reserva miro primero los dias de las otras reservas para no dejara que se solapen las reservas
 exports.postBooking = (req, res, next)=>{
     console.log("este es mi req.body "+JSON.stringify(req.body))
     // paso las fechas a date y a localtime para quitarle el offset de uso horario
@@ -121,16 +127,6 @@ exports.postBooking = (req, res, next)=>{
 
       
 };
-
-// hacer put 
-
-
-// // user con el ID y ADMIN
-// exports.patchBooking = (req,res,next)=>{
-// Booking.findByIdAndUpdate(req.params.id, req.body, {new:true})
-// .then(item=>res.status(200).json(item))
-// .catch(e=>res.status(500).send(e));
-// }
 
 // user con el ID y ADMIN
 exports.patchBooking = (req,res,next)=>{

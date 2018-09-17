@@ -16,15 +16,15 @@ exports.getVans = function(req, res, next) {
   }
   
 
-//   function checkRoles(role) {
-//     return function(req, res, next) {
-//       if (req.isAuthenticated() && req.user.role === role) {
-//         return next();
-//       } else {
-//         res.redirect('/login')
-//       }
-//     }
-//   }
+  function checkRoles(role) {
+    return function(req, res, next) {
+      if (req.isAuthenticated() && req.user.role === role) {
+        return next();
+      } else {
+        res.redirect('/user/login')
+      }
+    }
+  }
 
 
 
@@ -55,14 +55,14 @@ exports.postVan = (req, res, next)=>{
         })
 
 }
-// solo para ADMIN
+// falta hacer que  solo para ADMIN
 exports.patchVan = (req,res,next)=>{
 Van.findByIdAndUpdate(req.params.id, req.body, {new:true})
 .then(item=>res.status(200).json(item))
 .catch(e=>res.status(500).send(e));
 }
 
-// solo para ADMIN
+//falta hacer que solo para ADMIN
 exports.deleteVan = (req,res,next)=>{
 Van.findByIdAndRemove(req.params.id)
 .then(lists=>res.status(200).json(lists))
