@@ -14,6 +14,12 @@ export class BookingService {
   constructor(private http:Http) { }
 
   getListBookings():Observable<any> {
+    _// JQUERY llamadas ajax
+    // $.ajax(`${this.baseURL}/booking`, {
+    //   method:'POST',
+    //   data:values
+    // })
+
     return this.http.get(`${this.baseURL}/booking`)
       .map((res) => res.json());
   }
