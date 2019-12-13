@@ -28,7 +28,7 @@
     "morgan": "~1.9.0",
     "ng2-toastr": "^4.1.2",
     "nodemon": "^1.17.5",
-    "npm": "^6.4.0",
+    "npm": "^6.13.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose-email": "^0.1.4"
